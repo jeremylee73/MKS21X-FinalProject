@@ -1,3 +1,7 @@
+import java.awt.image.BufferedImage;
+import java.io.File;
+import javax.imageio.ImageIO;
+
 public class GraphingCalculator {
   private boolean[][] graph1;
   private boolean[][] graph2;
@@ -39,6 +43,30 @@ public class GraphingCalculator {
       }
     }
     return ans;
+  }
+
+  // Creates and displays image of graph1
+  // Credit to https://stackoverflow.com/questions/11897297/constructing-image-from-2d-array-in-java
+  public void display(){
+    int[][] PixelArray;
+    BufferedImage bufferImage=new BufferedImage(201, 201,BufferedImage.TYPE_INT_RGB);
+    int height=bufferImage.getHeight();
+    int width=bufferImage.getWidth();
+    PixelArray=new int[width][height];
+
+    for(int y=0;y<height;y++){
+        for(int x=0;x<width;x++){
+            int Pixel=PixelArray[x][y]<<16 | PixelArray[x][y] << 8 | PixelArray[x][y];
+            bufferImage.setRGB(x, y,Pixel);
+        }
+    }
+
+    File outputfile = new File("D:\\saved.jpg");
+    ImageIO.write(bufferImage, "jpg", outputfile);
+
+    catch(Exception ee){
+      ee.printStackTrace();
+    }
   }
 
   public static void main(String[] args){
