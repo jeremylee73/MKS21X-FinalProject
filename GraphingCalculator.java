@@ -3,18 +3,18 @@ import java.io.File;
 import javax.imageio.ImageIO;
 
 public class GraphingCalculator {
-  private boolean[][] graph1;
-  private boolean[][] graph2;
+  private static boolean[][] graph1;
+  private static boolean[][] graph2;
 
   public GraphingCalculator(){
-    graph1 = new boolean[21][21];
+    graph1 = new boolean[2001][2001];
     storeVals(1, 0, graph1);
   }
 
   public static void storeVals(int x, int c, boolean[][] graph){
-    for (int i=0; i<=20; i++){
-      for (int j=0; j<=20; j++){
-        if ((i-10) == (x*(j-10)) + c){
+    for (int i=0; i<=2000; i++){
+      for (int j=0; j<=2000; j++){
+        if ((i-1000) == (x*(j-1000)) + c){
           graph[i][j] = true;
         }
       }
@@ -55,9 +55,17 @@ public class GraphingCalculator {
       int width=bufferimage.getWidth();
       PixelArray=new int[width][height];
 
+      // Enters coordinates from graph and x and y axis.
       for(int i=0;i<width;i++){
           for(int j=0;j<height;j++){
-              PixelArray[i][j]=bufferimage.getRGB(i, j);
+              if (graph1[i][j]){
+                PixelArray[i][height-j-1]=0; // rgb value of black
+              } else{
+                PixelArray[i][height-j-1]=16777215; // rgb value of white
+              }
+              if (i == width / 2 || j == height / 2){
+                PixelArray[i][height-j-1]=0; // rgb value of black
+              }
           }
       }
 
@@ -83,7 +91,7 @@ public class GraphingCalculator {
 
     // Testing storeVals
     GraphingCalculator graph = new GraphingCalculator();
-    System.out.println(graph);
+    // System.out.println(graph);
 
     // Testing display
     display();
