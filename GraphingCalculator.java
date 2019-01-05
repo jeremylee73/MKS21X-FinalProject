@@ -61,7 +61,7 @@ public class GraphingCalculator {
           }
       }
 
-      BufferedImage bufferImage=new BufferedImage(201, 201,BufferedImage.TYPE_INT_RGB);
+      BufferedImage bufferImage=new BufferedImage(height, width,BufferedImage.TYPE_INT_RGB);
 
       for(int y=0;y<height;y++){
           for(int x=0;x<width;x++){
@@ -69,7 +69,7 @@ public class GraphingCalculator {
           }
       }
 
-      File outputfile = new File("graph2.jpg");
+      File outputfile = new File("graph.jpg");
       ImageIO.write(bufferImage, "jpg", outputfile);
     }
     catch(Exception ee){
