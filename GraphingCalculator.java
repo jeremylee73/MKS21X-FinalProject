@@ -8,7 +8,7 @@ public class GraphingCalculator {
 
   public GraphingCalculator(){
     graph1 = new boolean[2001][2001];
-    storeVals(1, 0, graph1);
+    storeVals(2, 100, graph1);
   }
 
   public static void storeVals(int x, int c, boolean[][] graph){
@@ -59,12 +59,12 @@ public class GraphingCalculator {
       for(int i=0;i<width;i++){
           for(int j=0;j<height;j++){
               if (graph1[i][j]){
-                PixelArray[i][height-j-1]=0; // rgb value of black
+                PixelArray[j][height-i-1]=0; // rgb value of black
               } else{
-                PixelArray[i][height-j-1]=16777215; // rgb value of white
+                PixelArray[j][height-i-1]=16777215; // rgb value of white
               }
               if (i == width / 2 || j == height / 2){
-                PixelArray[i][height-j-1]=0; // rgb value of black
+                PixelArray[j][height-i-1]=0; // rgb value of black
               }
           }
       }
