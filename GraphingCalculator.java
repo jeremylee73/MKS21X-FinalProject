@@ -4,18 +4,24 @@ import javax.imageio.ImageIO;
 
 public class GraphingCalculator {
   private static boolean[][] graph1;
+  private static double x1;
+  private static int c1;
   private static boolean[][] graph2;
 
   public GraphingCalculator(){
     graph1 = new boolean[2001][2001];
-    storeVals(2, 100, graph1);
+    x1 = 2.0;
+    c1 = 100;
+    storeVals(x1, c1, graph1);
   }
 
-  public static void storeVals(int x, int c, boolean[][] graph){
+  public static void storeVals(double x, int c, boolean[][] graph){
     for (int i=0; i<=2000; i++){
       for (int j=0; j<=2000; j++){
         if ((i-1000) == (x*(j-1000)) + c){
           graph[i][j] = true;
+        } else {
+          graph[i][j] = false;
         }
       }
     }
@@ -85,6 +91,28 @@ public class GraphingCalculator {
     }
   }
 
+  public static void translateUpDown(int a, boolean[][] data) {
+    c1 = (int) Math.round(c1 + a);
+    storeVals(x1, c1, graph1);
+  }
+
+  public static void translateLeftRight(int a, boolean[][] data) {
+    c1 = (int) Math.round(c1 - (x1 * a));
+    storeVals(x1, c1, graph1);
+  }
+
+  public static void dilateUpDown(int a, boolean[][] PixelArray) {
+    x1 = x1 * a;
+    c1 = c1 * a;
+    storeVals(x1, c1, graph1);
+  }
+
+  public static void dilateLeftRight(int a, boolean[][] PixelArray) {
+    x1 = x1 / a;
+    c1 = c1 / a;
+    storeVals(x1, c1, graph1);
+  }
+
   public static void main(String[] args){
     // Testing solve
     System.out.println(solve(1, 1, 2, 2));
@@ -93,8 +121,18 @@ public class GraphingCalculator {
     GraphingCalculator graph = new GraphingCalculator();
     // System.out.println(graph);
 
+    // Testing dilates
+    dilateUpDown(5, graph1);
+    dilateLeftRight(5, graph1);
+
+    // Testing translates
+    translateLeftRight(100, graph1);
+    translateUpDown(500, graph1);
+
     // Testing display
     display();
+
+
   }
 
 }
