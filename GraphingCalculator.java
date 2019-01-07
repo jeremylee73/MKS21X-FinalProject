@@ -108,6 +108,7 @@ public class GraphingCalculator {
         }
       }
     }
+    PixelArray = copy;
   }
 
   public static void translateLeftRight(int a, boolean[][] PixelArray) {
@@ -122,6 +123,37 @@ public class GraphingCalculator {
         }
       }
     }
+    PixelArray = copy;
+  }
+
+  public static void dilateUpDown(int a, boolean[][] PixelArray) {
+    boolean[][] copy = new boolean[PixelArray.length * a][PixelArray[0].length];
+    for (int i = 0;i < PixelArray.length * a;i ++) {
+      for (int j = 0;j < PixelArray.length;j ++) {
+        if (PixelArray[i][j]) {
+          copy[i + (i - PixelArray.length / 2) / Math.abs(i - PixelArray.length / 2) * a][j] = true;
+        }
+        else {
+          copy[i + (i - PixelArray.length / 2) / Math.abs(i - PixelArray.length / 2) * a][j] = false;
+        }
+      }
+    }
+    PixelArray = copy;
+  }
+
+  public static void dilateLeftRight(int a, boolean[][] PixelArray) {
+    boolean[][] copy = new boolean[PixelArray.length][PixelArray[0].length * a];
+    for (int i = 0;i < PixelArray.length;i ++) {
+      for (int j = 0;j < PixelArray.length * a;j ++) {
+        if (PixelArray[i][j]) {
+          copy[i][j + (j - PixelArray.length / 2) / Math.abs(j - PixelArray.length / 2) * a] = true;
+        }
+        else {
+          copy[i][j + (j - PixelArray.length / 2) / Math.abs(j - PixelArray.length / 2) * a] = false;
+        }
+      }
+    }
+    PixelArray = copy;
   }
 
 }
