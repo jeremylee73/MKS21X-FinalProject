@@ -68,7 +68,6 @@ public class GraphingCalculator {
               }
           }
       }
-
       BufferedImage bufferImage=new BufferedImage(height, width,BufferedImage.TYPE_INT_RGB);
 
       for(int y=0;y<height;y++){
@@ -95,6 +94,34 @@ public class GraphingCalculator {
 
     // Testing display
     display();
+  }
+
+  public static void translateUpDown(int a, boolean[][] PixelArray) {
+    boolean[][] copy = new boolean[PixelArray.length - a][PixelArray[0].length];
+    for (int i = a;i < PixelArray.length;i ++) {
+      for (int j = 0;j < PixelArray.length;j ++) {
+        if (PixelArray[i][j]) {
+          copy[i - a][j] = true;
+        }
+        else {
+          copy[i - a][j] = false;
+        }
+      }
+    }
+  }
+
+  public static void translateLeftRight(int a, boolean[][] PixelArray) {
+    boolean[][] copy = new boolean[PixelArray.length][PixelArray[0].length - a];
+    for (int i = 0;i < PixelArray.length;i ++) {
+      for (int j = a;j < PixelArray.length;j ++) {
+        if (PixelArray[i][j]) {
+          copy[i][j - a] = true;
+        }
+        else {
+          copy[i][j - a] = false;
+        }
+      }
+    }
   }
 
 }
