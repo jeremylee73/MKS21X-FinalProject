@@ -16,7 +16,39 @@ public class GraphingCalculator {
 
   public static void main(String[] args){
     // Testing solve
-    System.out.println(solve(1, 1, 2, 2));
+    //System.out.println(solve(1, 1, 2, 2));
+
+    if (args.length >= 1) {
+      try{
+        double x = Double.parseDouble(args[1]);
+      }catch(NumberFormatException e) {
+        System.out.println("Make sure that you have a double for your first input");
+      }
+    }
+
+    if (args.length >= 2) {
+      try{
+        int x = Integer.parseInt(args[2]);
+      }catch(NumberFormatException e) {
+        System.out.println("Make sure that you have an integer for your second input");
+      }
+    }
+
+    if (args.length >= 3) {
+      try{
+        int x = Integer.parseInt(args[3]);
+      }catch(NumberFormatException e) {
+        System.out.println("Make sure that you have an integer for your third input");
+      }
+    }
+
+    if (args.length >= 4) {
+      try{
+        int x = Integer.parseInt(args[4]);
+      }catch(NumberFormatException e) {
+        System.out.println("Make sure that you have an integer for your fourth input");
+      }
+    }
 
     // Testing storeVals
     singlegraph output = new singlegraph(2001,2001,2.0,1);
