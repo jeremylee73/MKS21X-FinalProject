@@ -18,33 +18,33 @@ public class GraphingCalculator {
     // Testing solve
     //System.out.println(solve(1, 1, 2, 2));
 
-    if (args.length >= 1) {
+    if (args.length > 1) {
       try{
-        double x = Double.parseDouble(args[1]);
+        double x = Double.parseDouble(args[0]);
       }catch(NumberFormatException e) {
         System.out.println("Make sure that you have a double for your first input");
       }
     }
 
-    if (args.length >= 2) {
+    if (args.length > 2) {
       try{
-        int x = Integer.parseInt(args[2]);
+        int x = Integer.parseInt(args[1]);
       }catch(NumberFormatException e) {
         System.out.println("Make sure that you have an integer for your second input");
       }
     }
 
-    if (args.length >= 3) {
+    if (args.length > 3) {
       try{
-        int x = Integer.parseInt(args[3]);
+        int x = Integer.parseInt(args[2]);
       }catch(NumberFormatException e) {
         System.out.println("Make sure that you have an integer for your third input");
       }
     }
 
-    if (args.length >= 4) {
+    if (args.length > 4) {
       try{
-        int x = Integer.parseInt(args[4]);
+        int x = Integer.parseInt(args[3]);
       }catch(NumberFormatException e) {
         System.out.println("Make sure that you have an integer for your fourth input");
       }
