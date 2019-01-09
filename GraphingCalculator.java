@@ -28,6 +28,8 @@ public class GraphingCalculator {
 
     // Testing rotate90C
     output.rotate90C();
+    output.rotate90C();
+    output.rotate90CC();
 
     // Testing display
     output.display();
