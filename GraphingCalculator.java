@@ -17,50 +17,53 @@ public class GraphingCalculator {
   public static void main(String[] args){
     // Testing solve
     //System.out.println(solve(1, 1, 2, 2));
+    double x = 1.0;
+    int c = 0;
+    int h = 2001;
+    int w = 2001;
 
-    if (args.length > 1) {
+    if (args.length > 0) {
       try{
-        double x = Double.parseDouble(args[0]);
+        x = Double.parseDouble(args[0]);
       }catch(NumberFormatException e) {
         System.out.println("Make sure that you have a double for your first input");
       }
     }
 
-    if (args.length > 2) {
+    if (args.length > 1) {
       try{
-        int x = Integer.parseInt(args[1]);
+        c = Integer.parseInt(args[1]);
       }catch(NumberFormatException e) {
         System.out.println("Make sure that you have an integer for your second input");
       }
     }
 
-    if (args.length > 3) {
-      try{
-        int x = Integer.parseInt(args[2]);
-      }catch(NumberFormatException e) {
-        System.out.println("Make sure that you have an integer for your third input");
-      }
+    /*if (args.length > 2) {                                                                     This section was meant to
+      try{                                                                                       allow users to input values into
+        h = Integer.parseInt(args[2]);                                                           the function to modify the dimensions
+      }catch(NumberFormatException e) {                                                          of the graph. We ran into a couple of
+        System.out.println("Make sure that you have an integer for your third input");           unexpected problems and will attempt to
+      }                                                                                          do this later.
     }
 
-    if (args.length > 4) {
+    if (args.length > 3) {
       try{
-        int x = Integer.parseInt(args[3]);
+        w = Integer.parseInt(args[3]);
       }catch(NumberFormatException e) {
         System.out.println("Make sure that you have an integer for your fourth input");
       }
-    }
-
+    }*/
     // Testing storeVals
-    singlegraph output = new singlegraph(2001,2001,2.0,1);
+    singlegraph output = new singlegraph(h,w,x,c);
     // System.out.println(graph);
 
     // Testing dilates
-    output.dilateUpDown(5);
-    output.dilateLeftRight(5);
+    //output.dilateUpDown(5);
+    //output.dilateLeftRight(5);
 
     // Testing translates
-    output.translateLeftRight(100);
-    output.translateUpDown(500);
+    //output.translateLeftRight(100);
+    //output.translateUpDown(500);
 
     // Testing display
     output.display();

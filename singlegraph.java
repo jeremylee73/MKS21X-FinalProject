@@ -12,7 +12,7 @@ public class singlegraph {
   public singlegraph(int h, int w, double m, int b) {
     height = h;
     width = w;
-    graph = new boolean[h][w];
+    graph = new boolean[height][width];
     x1 = m;
     c1 = b;
     storeVals(x1, c1);
@@ -79,11 +79,12 @@ public class singlegraph {
   }
 
   public void storeVals(double x, int c){
-    for (int i=0; i<=2000; i++){
-      for (int j=0; j<=2000; j++){
-        if ((i-1000) == (x*(j-1000)) + c){
+    for (int i=0; i<height; i++){
+      for (int j=0; j<width; j++){
+        if ((i-height / 2) == (x*(j- width / 2)) + c){
           graph[i][j] = true;
         } else {
+          //System.out.println("i: " + i + " j: " + j + " height: " + height + " width: " + width);
           graph[i][j] = false;
         }
       }
