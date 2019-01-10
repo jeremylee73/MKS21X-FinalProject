@@ -2,14 +2,14 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.imageio.ImageIO;
 
-public class singlegraph {
+public class SingleGraph {
   private boolean[][] graph;
   private double x1;
   private int c1;
   private int height;
   private int width;
 
-  public singlegraph(int h, int w, double m, int b) {
+  public SingleGraph(int h, int w, double m, int b) {
     height = h;
     width = w;
     graph = new boolean[h][w];
@@ -29,10 +29,10 @@ public class singlegraph {
       PixelArray=new int[width2][height2];
 
       // Enters coordinates from graph and x and y axis.
-      for(int i=0;i<width2;i++){
+      for(int i=1;i<width2;i++){
           for(int j=0;j<height2;j++){
               if (graph[i][j]){
-                PixelArray[j][height2-i-1]=0; // rgb value of black
+                PixelArray[j][height2-i-1] = 0; // rgb value of black
               } else{
                 PixelArray[j][height2-i-1]=16777215; // rgb value of whit
               }
@@ -56,6 +56,14 @@ public class singlegraph {
     }
   }
 
+  public double getX(){
+    return x1;
+  }
+
+  public int getC(){
+    return c1;
+  }
+
   public void translateUpDown(int a) {
     c1 = (int) Math.round(c1 + a);
     storeVals(x1, c1);
@@ -75,6 +83,18 @@ public class singlegraph {
   public void dilateLeftRight(int a) {
     x1 = x1 / a;
     c1 = c1 / a;
+    storeVals(x1, c1);
+  }
+
+  public void rotate90C(){
+    x1 = (-1) / x1;
+    c1 = (int) Math.round((-1 * c1) / x1);
+    storeVals(x1, c1);
+  }
+
+  public void rotate90CC(){
+    x1 = (-1) / x1;
+    c1 = (int) Math.round(c1 / x1);
     storeVals(x1, c1);
   }
 
