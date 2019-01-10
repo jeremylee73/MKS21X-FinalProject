@@ -17,7 +17,42 @@ public class GraphingCalculator {
   public static void main(String[] args){
     // Testing solve
     System.out.println(solve(1, 1, 2, 2));
+    double x = 1.0;
+    int c = 0;
+    int h = 2001;
+    int w = 2001;
 
+    if (args.length > 0) {
+      try{
+        x = Double.parseDouble(args[0]);
+      }catch(NumberFormatException e) {
+        System.out.println("Make sure that you have a double for your first input");
+      }
+    }
+
+    if (args.length > 1) {
+      try{
+        c = Integer.parseInt(args[1]);
+      }catch(NumberFormatException e) {
+        System.out.println("Make sure that you have an integer for your second input");
+      }
+    }
+
+    /*if (args.length > 2) {                                                                     This section was meant to
+      try{                                                                                       allow users to input values into
+        h = Integer.parseInt(args[2]);                                                           the function to modify the dimensions
+      }catch(NumberFormatException e) {                                                          of the graph. We ran into a couple of
+        System.out.println("Make sure that you have an integer for your third input");           unexpected problems and will attempt to
+      }                                                                                          do this later.
+    }
+
+    if (args.length > 3) {
+      try{
+        w = Integer.parseInt(args[3]);
+      }catch(NumberFormatException e) {
+        System.out.println("Make sure that you have an integer for your fourth input");
+      }
+    }*/
     // Testing storeVals
     SingleGraph output = new SingleGraph(2001,2001,2.0,100);
     // System.out.println(graph);
@@ -32,10 +67,7 @@ public class GraphingCalculator {
     output.translateLeftRight(100);
     output.translateUpDown(500);
 
-    // Testing rotate90C
-    output.rotate90C();
-    output.rotate90C();
-    output.rotate90CC();
+
 
     System.out.println("Root: (" + findRoots(output.getX(), output.getC()) + ",0)");
 
