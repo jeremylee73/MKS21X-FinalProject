@@ -2,14 +2,14 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.imageio.ImageIO;
 
-public class singlegraph {
+public class SingleGraph {
   private boolean[][] graph;
   private double x1;
   private int c1;
   private int height;
   private int width;
 
-  public singlegraph(int h, int w, double m, int b) {
+  public SingleGraph(int h, int w, double m, int b) {
     height = h;
     width = w;
     graph = new boolean[height][width];
