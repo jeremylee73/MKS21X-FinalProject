@@ -4,18 +4,20 @@ import javax.imageio.ImageIO;
 
 public class SingleGraph {
   private boolean[][] graph;
+  private double q1;
   private double x1;
   private int c1;
   private int height;
   private int width;
 
-  public SingleGraph(int h, int w, double m, int b) {
+  public SingleGraph(int h, int w, double q, double m, int b) {
     height = h;
     width = w;
     graph = new boolean[height][width];
+    q1 = q;
     x1 = m;
     c1 = b;
-    storeVals(x1, c1);
+    storeVals(q1, x1, c1);
   }
 
   // Creates and displays image of graph1
@@ -66,42 +68,42 @@ public class SingleGraph {
 
   public void translateUpDown(int a) {
     c1 = (int) Math.round(c1 + a);
-    storeVals(x1, c1);
+    storeVals(q1, x1, c1);
   }
 
   public void translateLeftRight(int a) {
     c1 = (int) Math.round(c1 - (x1 * a));
-    storeVals(x1, c1);
+    storeVals(q1, x1, c1);
   }
 
   public void dilateUpDown(int a) {
     x1 = x1 * a;
     c1 = c1 * a;
-    storeVals(x1, c1);
+    storeVals(q1, x1, c1);
   }
 
   public void dilateLeftRight(int a) {
     x1 = x1 / a;
     c1 = c1 / a;
-    storeVals(x1, c1);
+    storeVals(q1, x1, c1);
   }
 
   public void rotate90C(){
     x1 = (-1) / x1;
     c1 = (int) Math.round((-1 * c1) / x1);
-    storeVals(x1, c1);
+    storeVals(q1, x1, c1);
   }
 
   public void rotate90CC(){
     x1 = (-1) / x1;
     c1 = (int) Math.round(c1 / x1);
-    storeVals(x1, c1);
+    storeVals(q1, x1, c1);
   }
 
-  public void storeVals(double x, int c){
+  public void storeVals(double q, double x, int c){
     for (int i=0; i<height; i++){
       for (int j=0; j<width; j++){
-        if ((i-height / 2) == (x*(j- width / 2)) + c){
+        if ((i-height / 2) == ((q * (j-width / 2) * (j-width / 2)) + (x*(j- width / 2)) + c)){
           graph[i][j] = true;
         } else {
           //System.out.println("i: " + i + " j: " + j + " height: " + height + " width: " + width);
