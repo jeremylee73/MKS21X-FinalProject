@@ -19,6 +19,7 @@ public class GraphingCalculator {
     System.out.println(solve(1, 1, 2, 2));
     double x = 1.0;
     int c = 0;
+    int q = 1;
     int h = 2001;
     int w = 2001;
 
@@ -54,7 +55,7 @@ public class GraphingCalculator {
       }
     }*/
     // Testing storeVals
-    SingleGraph output = new SingleGraph(2001,2001,x,c);
+    SingleGraph output = new SingleGraph(2001,2001,q,x,c);
     // System.out.println(graph);
 
     System.out.println("Root: (" + findRoots(output.getX(), output.getC()) + ",0)");
@@ -64,8 +65,8 @@ public class GraphingCalculator {
     //output.dilateLeftRight(5);
 
     // // Testing translates
-    //output.translateLeftRight(100);
-    //output.translateUpDown(500);
+    output.translateLeftRight(100);
+    output.translateUpDown(100);
 
 
 

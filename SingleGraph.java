@@ -72,7 +72,8 @@ public class SingleGraph {
   }
 
   public void translateLeftRight(int a) {
-    c1 = (int) Math.round(c1 - (x1 * a));
+    c1 = (int) Math.round((a*a)+(-x1*a)+c1);
+    x1 = x1 + ((-2 * q1) * a);
     storeVals(q1, x1, c1);
   }
 
