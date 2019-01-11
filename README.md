@@ -31,3 +31,7 @@ January 09, 2019
 ----------------------------------------------------------------------------------------------------------------------------------------
 Jeremy - I wrote the findRoot function, which uses the solve function to figure out the x coordinate at which the graph intersects the x-axis.
 Jacob - I also fixed a few issues with inputting values.
+
+January 10, 2019
+----------------------------------------------------------------------------------------------------------------------------------------
+Jacob - I made a way for users to input transformations they want to see into the terminal directly, rather than having to go into the code.
