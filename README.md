@@ -1,5 +1,9 @@
 # MKS21X-FinalProject
 
+
+----------------------------------------------------------------------------------------------------------------------------------------
+A quick note: For whatever reason we thought the devlog was supposed to be on google docs rather than here at first. So if it looks like the first week or so of commits were all added at the same time, that's why.
+
 January 03, 2019
 ----------------------------------------------------------------------------------------------------------------------------------------
 Jeremy - I wrote the solve function, which inputs four variables: a, b, c, d. The function returns the value of x after setting up the equation ax + b = cx + d.
