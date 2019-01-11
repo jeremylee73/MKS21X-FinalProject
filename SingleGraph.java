@@ -78,6 +78,7 @@ public class SingleGraph {
   }
 
   public void dilateUpDown(int a) {
+    q1 = q1 * a;
     x1 = x1 * a;
     c1 = c1 * a;
     storeVals(q1, x1, c1);
@@ -85,7 +86,7 @@ public class SingleGraph {
 
   public void dilateLeftRight(int a) {
     x1 = x1 / a;
-    c1 = c1 / a;
+    q1 = q1 / (a*a);
     storeVals(q1, x1, c1);
   }
 

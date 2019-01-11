@@ -56,11 +56,7 @@ public class GraphingCalculator {
       }
     }*/
     // Testing storeVals
-<<<<<<< HEAD
     SingleGraph output = new SingleGraph(2001,2001,q,x,c);
-=======
-    SingleGraph output = new SingleGraph(2001,2001,1.0,x,c);
->>>>>>> 13784cbfaff1a5a6a5d2b3a512137426d2da9131
     // System.out.println(graph);
 
     if (args.length > 2) {
@@ -88,8 +84,8 @@ public class GraphingCalculator {
     System.out.println("Root: (" + findRoots(output.getX(), output.getC()) + ",0)");
 
     // // Testing dilates
-    //output.dilateUpDown(5);
-    //output.dilateLeftRight(5);
+    output.dilateUpDown(5);
+    output.dilateLeftRight(5);
 
     // // Testing translates
     output.translateLeftRight(100);
