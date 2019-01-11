@@ -4,19 +4,27 @@ import javax.imageio.ImageIO;
 
 public class GraphingCalculator {
 
-  public static double solve(double x1, int c1, double x2, int c2){
-    double newX = x2 - x1;
-    double newC = c1 - c2;
-    return (newC * 1.0) / newX;
+  public static double[] solve(double q1, double x1, int c1, double q2, double x2, int c2){
+    double dq = q2 - q1;
+    double dx = x2 - x1;
+    double dc = (c2 * 1.0) - c1;
+    double[] ans = new double[2];
+    ans[0] = ((-1*dx) + Math.sqrt((dx*dx)-(4*(dc*dq)))) / (2*dq);
+    ans[1] = ((-1*dx) - Math.sqrt((dx*dx)-(4*(dc*dq)))) / (2*dq);
+    return ans;
   }
 
-  public static double findRoots(double x1, int c1){
-    return solve(x1, c1, 0, 0);
+  public static String findRoots(double q1, double x1, int c1){
+    double[] roots = solve(q1, x1, c1, 0, 0, 0);
+    if (roots[0] == roots[1]){
+      return "(" + roots[0] + ",0)";
+    }
+    return "(" + roots[0] + ",0);(" + roots[1] + ",0)";
   }
 
   public static void main(String[] args){
     // Testing solve
-    System.out.println(solve(1, 1, 2, 2));
+    System.out.println(findRoots(1, 6, -16)); // Should return -8 and 2
     double x = 1.0;
     int c = 0;
     int q = 1;
@@ -81,7 +89,7 @@ public class GraphingCalculator {
       }
     }
 
-    System.out.println("Root: (" + findRoots(output.getX(), output.getC()) + ",0)");
+    //System.out.println("Root: (" + findRoots(output.getX(), output.getC()) + ",0)");
 
     // // Testing dilates
     output.dilateUpDown(5);
@@ -91,9 +99,7 @@ public class GraphingCalculator {
     output.translateLeftRight(100);
     output.translateUpDown(100);
 
-
-
-    System.out.println("Root: (" + findRoots(output.getX(), output.getC()) + ",0)");
+    //System.out.println("Root: (" + findRoots(output.getX(), output.getC()) + ",0)");
 
     // Testing display
     output.display();
