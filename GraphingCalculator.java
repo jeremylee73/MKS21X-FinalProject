@@ -55,7 +55,7 @@ public class GraphingCalculator {
       }
     }*/
     // Testing storeVals
-    SingleGraph output = new SingleGraph(2001,2001,x,c);
+    SingleGraph output = new SingleGraph(2001,2001,1.0,x,c);
     // System.out.println(graph);
 
     if (args.length > 2) {
