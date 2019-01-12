@@ -43,4 +43,4 @@ Jacob - I made a way for users to input transformations they want to see into th
 
 January 11, 2019
 ------------------------------------------------------------------------------------------------------------------------------
-Jeremy - I changed the input in the terminal to take the equation in 'ax^2 + bx + c' form, and it looks for particular strings to parse into our individual variables. The only thing that could be optimized is that currently, it does not recognize x^2 or x as being equivalent to 1x^2 or 1x, so that is something we should fix later on. I also editted the rotate functions to accomodate for quadratic functions.
+Jeremy - I changed the input in the terminal to take the equation in 'ax^2 + bx + c' form, and it looks for particular strings to parse into our individual variables. The only thing that could be optimized is that currently, it does not recognize x^2 or x as being equivalent to 1x^2 or 1x, so that is something we should fix later on. I also editted the rotate functions to accomodate for quadratic functions. I also editted the inputs so that the last input is a basic transformation done on the graph immediately after graphing it.
