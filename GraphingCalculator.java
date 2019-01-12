@@ -61,12 +61,16 @@ public class GraphingCalculator {
               q = sign * Double.parseDouble(args[i].substring(0, args[i].length()-3));
             }
           }
+          if (i == 4){
+            i = args.length;
+          }
         }
       }
 
       System.out.println(q);
       System.out.println(x);
       System.out.println(c);
+      System.out.println(findRoots(q, x, c));
 
     // if (args.length > 0) {
     //   try{
@@ -104,24 +108,23 @@ public class GraphingCalculator {
     SingleGraph output = new SingleGraph(2001,2001,q,x,c);
     // System.out.println(graph);
 
-    if (args.length > 2) {
-      for (int i = 2;i < args.length;i += 1) {
-        char a = args[i].charAt(0);
-        if (a == 't') {
-          if (args[i].charAt(1) == 'u') {
-            output.translateUpDown(Integer.parseInt(args[i].substring(2,args[i].length())));
-          }
-          if (args[i].charAt(1) == 'r') {
-            output.translateLeftRight(Integer.parseInt(args[i].substring(2,args[i].length())));
-          }
+    if (args.length > 5) {
+      char a = args[5].charAt(0);
+      char b = args[5].charAt(1);
+      if (a == 't') {
+        if (b == 'u') {
+          output.translateUpDown(Integer.parseInt(args[5].substring(2,args[5].length())));
         }
-        if (a == 'd') {
-          if (args[i].charAt(1) == 'u') {
-            output.dilateUpDown(Integer.parseInt(args[i].substring(2,args[i].length())));
-          }
-          if (args[i].charAt(1) == 'r') {
-            output.dilateLeftRight(Integer.parseInt(args[i].substring(2,args[i].length())));
-          }
+        if (b == 'r') {
+          output.translateLeftRight(Integer.parseInt(args[5].substring(2,args[5].length())));
+        }
+      }
+      if (a == 'd') {
+        if (b == 'u') {
+          output.dilateUpDown(Integer.parseInt(args[5].substring(2,args[5].length())));
+        }
+        if (b == 'r') {
+          output.dilateLeftRight(Integer.parseInt(args[5].substring(2,args[5].length())));
         }
       }
     }
@@ -139,11 +142,10 @@ public class GraphingCalculator {
     //System.out.println("Root: (" + findRoots(output.getX(), output.getC()) + ",0)");
 
     // Testing Rotates
-    output.rotate90C();
+    //output.rotate90C();
 
     // Testing display
     output.display();
-
 
   }
 }

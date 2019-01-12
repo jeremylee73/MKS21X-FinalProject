@@ -97,7 +97,7 @@ public class SingleGraph {
         int reformedI = i - width / 2;
         if ((-1 * reformedJ) == ((q1*reformedI*reformedI) + (x1 * reformedI) + c1)){
           graph[i][j] = true;
-          System.out.println("("+reformedJ+","+reformedI+")");
+          //System.out.println("("+reformedJ+","+reformedI+")");
         } else {
           graph[i][j] = false;
         }
@@ -112,7 +112,7 @@ public class SingleGraph {
         int reformedI = i - width / 2;
         if (reformedJ == ((q1*reformedI*reformedI) + (-1 * x1 * reformedI) + c1)){
           graph[i][j] = true;
-          System.out.println("("+reformedJ+","+reformedI+")");
+          //System.out.println("("+reformedJ+","+reformedI+")");
         } else {
           graph[i][j] = false;
         }
