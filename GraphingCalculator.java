@@ -57,9 +57,17 @@ public class GraphingCalculator {
               if (!presentX){
                 c = sign * Integer.parseInt(args[i]);
               } else if (deg1){
-                x = sign * Double.parseDouble(args[i].substring(0, args[i].length()-1));
+                if (args[i].length() != 1){
+                  x = sign * Double.parseDouble(args[i].substring(0, args[i].length()-1));
+                } else{
+                  x = 1;
+                }
               } else if (deg2){
-                q = sign * Double.parseDouble(args[i].substring(0, args[i].length()-3));
+                if (args[i].length() != 3){
+                  q = sign * Double.parseDouble(args[i].substring(0, args[i].length()-3));
+                } else{
+                  q = 1;
+                }
               }
             }
           }
