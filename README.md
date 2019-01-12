@@ -40,3 +40,7 @@ January 10, 2019
 ------------------------------------------------------------------------------------------------------------------------------
 Jeremy - I added the feature of inputting quadratics, so now all the transformations except rotations are compatible with quadratics. I also changed the solve and findRoots functions to operate with quadratics. The one problem so far is that when graphing the quadratics, it is very, very blurry because the pixels are so spaced apart, which makes dilations pretty much impossible to see.
 Jacob - I made a way for users to input transformations they want to see into the terminal directly, rather than having to go into the code.
+
+January 11, 2019
+------------------------------------------------------------------------------------------------------------------------------
+Jeremy - I changed the input in the terminal to take the equation in 'ax^2 + bx + c' form, and it looks for particular strings to parse into our individual variables. The only thing that could be optimized is that currently, it does not recognize x^2 or x as being equivalent to 1x^2 or 1x, so that is something we should fix later on.
