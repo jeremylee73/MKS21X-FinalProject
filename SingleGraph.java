@@ -31,18 +31,48 @@ public class SingleGraph {
       PixelArray=new int[width2][height2];
 
       // Enters coordinates from graph and x and y axis.
+      int count = 0;
+      int[][] coloredIndex = new int[PixelArray.length][2];
       for(int i=1;i<width2;i++){
           for(int j=0;j<height2;j++){
               if (graph[i][j]){
-                PixelArray[j][height2-i-1] = 0; // rgb value of black
+                PixelArray[j][width2-i-1] = 0; // rgb value of black
+                coloredIndex[count][0] = j;
+                coloredIndex[count][1] = i;
+                count++;
               } else{
-                PixelArray[j][height2-i-1]=16777215; // rgb value of whit
+                PixelArray[j][width2-i-1]=16777215; // rgb value of white
               }
               if (i == width2 / 2 || j == height2 / 2){
-                PixelArray[j][height2-i-1]=0; // rgb value of black
+                PixelArray[j][width2-i-1]=0; // rgb value of black
               }
           }
       }
+
+      for (int i=0; i<coloredIndex.length - 1; i++){
+        if (q1 == 0){
+          if (coloredIndex[i][0] < coloredIndex[i+1][0]){
+            //System.out.println("Gotcha");
+            for (int pixel=coloredIndex[i][0]; pixel<coloredIndex[i+1][0]; pixel++){
+              PixelArray[pixel][width2-coloredIndex[i][1]-1]=0; // rgb value of black
+            }
+          }
+          if (coloredIndex[i][0] > coloredIndex[i+1][0]){
+            //System.out.println("Gotcha");
+            for (int pixel=coloredIndex[i+1][0]; pixel<coloredIndex[i][0]; pixel++){
+              PixelArray[pixel][width2-coloredIndex[i+1][1]-1]=0; // rgb value of black
+            }
+          }
+          if (coloredIndex[i][1] < coloredIndex[i+1][1]){
+            //System.out.println("Gotcha");
+            for (int pixel=coloredIndex[i][1]; pixel<coloredIndex[i+1][1]; pixel++){
+              PixelArray[coloredIndex[i][0]][width2-pixel-1]=0; // rgb value of black
+            }
+          }
+        }
+
+      }
+
       BufferedImage bufferImage=new BufferedImage(height, width,BufferedImage.TYPE_INT_RGB);
       for(int y=0;y<height2;y++){
           for(int x=0;x<width2;x++){
