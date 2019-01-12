@@ -37,32 +37,31 @@ public class GraphingCalculator {
           boolean presentX = false;
           boolean deg1 = false;
           boolean deg2 = false;
-          if (args[i].equals("+")){
-            sign = 1;
-          } else if (args[i].equals("-")){
-            sign = -1;
-          } else {
-            for (int j=0; j<args[i].length(); j++){
-              if (args[i].charAt(j) == 'x'){
-                presentX = true;
-                if (j == args[i].length()-1){
-                  deg1 = true;
-                } else if ((j<args[i].length()-2) && (args[i].substring(j, j+3).equals("x^2"))){
-                  deg2 = true;
+          if (!(args[i].contains("du") || args[i].contains("dr") || args[i].contains("tu") || args[i].contains("tr"))){
+            if (args[i].equals("+")){
+              sign = 1;
+            } else if (args[i].equals("-")){
+              sign = -1;
+            } else {
+              for (int j=0; j<args[i].length(); j++){
+                if (args[i].charAt(j) == 'x'){
+                  presentX = true;
+                  if (j == args[i].length()-1){
+                    deg1 = true;
+                  } else if ((j<args[i].length()-2) && (args[i].substring(j, j+3).equals("x^2"))){
+                    deg2 = true;
+                  }
                 }
               }
-            }
 
-            if (!presentX){
-              c = sign * Integer.parseInt(args[i]);
-            } else if (deg1){
-              x = sign * Double.parseDouble(args[i].substring(0, args[i].length()-1));
-            } else if (deg2){
-              q = sign * Double.parseDouble(args[i].substring(0, args[i].length()-3));
+              if (!presentX){
+                c = sign * Integer.parseInt(args[i]);
+              } else if (deg1){
+                x = sign * Double.parseDouble(args[i].substring(0, args[i].length()-1));
+              } else if (deg2){
+                q = sign * Double.parseDouble(args[i].substring(0, args[i].length()-3));
+              }
             }
-          }
-          if (i == 4){
-            i = args.length;
           }
         }
       }
@@ -108,26 +107,30 @@ public class GraphingCalculator {
     SingleGraph output = new SingleGraph(2001,2001,q,x,c);
     // System.out.println(graph);
 
-    if (args.length > 5) {
-      char a = args[5].charAt(0);
-      char b = args[5].charAt(1);
-      if (a == 't') {
-        if (b == 'u') {
-          output.translateUpDown(Integer.parseInt(args[5].substring(2,args[5].length())));
-        }
-        if (b == 'r') {
-          output.translateLeftRight(Integer.parseInt(args[5].substring(2,args[5].length())));
+    if (args.length > 0){
+      for (int i=0; i<args.length; i++){
+          if (args[i].length() >= 2){
+            char a = args[i].charAt(0);
+            char b = args[i].charAt(1);
+            if (a == 't') {
+              if (b == 'u') {
+                output.translateUpDown(Integer.parseInt(args[i].substring(2,args[i].length())));
+              }
+              if (b == 'r') {
+                output.translateLeftRight(Integer.parseInt(args[i].substring(2,args[i].length())));
+              }
+            }
+            if (a == 'd') {
+              if (b == 'u') {
+                output.dilateUpDown(Integer.parseInt(args[i].substring(2,args[i].length())));
+              }
+              if (b == 'r') {
+                output.dilateLeftRight(Integer.parseInt(args[i].substring(2,args[i].length())));
+              }
+            }
+          }
         }
       }
-      if (a == 'd') {
-        if (b == 'u') {
-          output.dilateUpDown(Integer.parseInt(args[5].substring(2,args[5].length())));
-        }
-        if (b == 'r') {
-          output.dilateLeftRight(Integer.parseInt(args[5].substring(2,args[5].length())));
-        }
-      }
-    }
 
     //System.out.println("Root: (" + findRoots(output.getX(), output.getC()) + ",0)");
 
@@ -146,6 +149,5 @@ public class GraphingCalculator {
 
     // Testing display
     output.display();
-
   }
 }
