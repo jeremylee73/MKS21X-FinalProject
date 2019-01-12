@@ -90,16 +90,34 @@ public class SingleGraph {
     storeVals(q1, x1, c1);
   }
 
-  public void rotate90C(){
-    x1 = (-1) / x1;
-    c1 = (int) Math.round((-1 * c1) / x1);
-    storeVals(q1, x1, c1);
+  public void rotate90CC(){
+    for (int i=0; i<height; i++){
+      for (int j=0; j<width; j++){
+        int reformedJ = j - height / 2;
+        int reformedI = i - width / 2;
+        if ((-1 * reformedJ) == ((q1*reformedI*reformedI) + (x1 * reformedI) + c1)){
+          graph[i][j] = true;
+          System.out.println("("+reformedJ+","+reformedI+")");
+        } else {
+          graph[i][j] = false;
+        }
+      }
+    }
   }
 
-  public void rotate90CC(){
-    x1 = (-1) / x1;
-    c1 = (int) Math.round(c1 / x1);
-    storeVals(q1, x1, c1);
+  public void rotate90C(){
+    for (int i=0; i<height; i++){
+      for (int j=0; j<width; j++){
+        int reformedJ = j - height / 2;
+        int reformedI = i - width / 2;
+        if (reformedJ == ((q1*reformedI*reformedI) + (-1 * x1 * reformedI) + c1)){
+          graph[i][j] = true;
+          System.out.println("("+reformedJ+","+reformedI+")");
+        } else {
+          graph[i][j] = false;
+        }
+      }
+    }
   }
 
   public void storeVals(double q, double x, int c){

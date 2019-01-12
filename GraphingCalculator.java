@@ -138,6 +138,9 @@ public class GraphingCalculator {
 
     //System.out.println("Root: (" + findRoots(output.getX(), output.getC()) + ",0)");
 
+    // Testing Rotates
+    output.rotate90C();
+
     // Testing display
     output.display();
 
