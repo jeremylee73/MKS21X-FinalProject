@@ -47,4 +47,4 @@ Jeremy - I changed the input in the terminal to take the equation in 'ax^2 + bx 
 
 January 12, 2019
 ------------------------------------------------------------------------------------------------------------------------------
-Jeremy - I fixed a bug with translateLeftRight and updated the input so that after you type the equation you can use "trN", "tuN", "duN", and "drN" to transform when N is the number you translate/dilate by.
+Jeremy - I fixed a bug with translateLeftRight and updated the input so that after you type the equation you can use "trN", "tuN", "duN", and "drN" to transform when N is the number you translate/dilate by. I also adjusted the input such that you don't need to add a coefficient if the coefficient is 1, so x is the same as 1x and x^2 is the same as 1x^2.
