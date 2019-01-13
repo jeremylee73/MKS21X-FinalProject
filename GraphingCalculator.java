@@ -57,16 +57,20 @@ public class GraphingCalculator {
               if (!presentX){
                 c = sign * Integer.parseInt(args[i]);
               } else if (deg1){
-                if (args[i].length() != 1){
+                if (args[i].length() != 1 && !(args[i].equals("-x"))){
                   x = sign * Double.parseDouble(args[i].substring(0, args[i].length()-1));
-                } else{
+                } else if (args[i].length() == 1){
                   x = 1;
+                } else {
+                  x = -1;
                 }
               } else if (deg2){
-                if (args[i].length() != 3){
+                if (args[i].length() != 3 && !(args[i].equals("-x^2"))){
                   q = sign * Double.parseDouble(args[i].substring(0, args[i].length()-3));
-                } else{
+                } else if (args[i].length() == 3){
                   q = 1;
+                } else {
+                  q = -1;
                 }
               }
             }
