@@ -48,30 +48,75 @@ public class SingleGraph {
               }
           }
       }
+      if (q1 == 0){
+        for (int i=0; i<coloredIndex.length - 1; i++){
 
-      for (int i=0; i<coloredIndex.length - 1; i++){
-        if (q1 == 0){
-          if (coloredIndex[i][0] < coloredIndex[i+1][0]){
-            //System.out.println("Gotcha");
-            for (int pixel=coloredIndex[i][0]; pixel<coloredIndex[i+1][0]; pixel++){
-              PixelArray[pixel][width2-coloredIndex[i][1]-1]=0; // rgb value of black
+            if (coloredIndex[i][0] < coloredIndex[i+1][0]){
+              //System.out.println("Gotcha");
+              for (int pixel=coloredIndex[i][0]; pixel<coloredIndex[i+1][0]; pixel++){
+                PixelArray[pixel][width2-coloredIndex[i][1]-1]=0; // rgb value of black
+              }
+            }
+            if (coloredIndex[i][0] > coloredIndex[i+1][0]){
+              //System.out.println("Gotcha");
+              for (int pixel=coloredIndex[i+1][0]; pixel<coloredIndex[i][0]; pixel++){
+                PixelArray[pixel][width2-coloredIndex[i+1][1]-1]=0; // rgb value of black
+              }
+            }
+            if (coloredIndex[i][1] < coloredIndex[i+1][1]){
+              //System.out.println("Gotcha");
+              for (int pixel=coloredIndex[i][1]; pixel<coloredIndex[i+1][1]; pixel++){
+                PixelArray[coloredIndex[i][0]][width2-pixel-1]=0; // rgb value of black
+              }
             }
           }
-          if (coloredIndex[i][0] > coloredIndex[i+1][0]){
-            //System.out.println("Gotcha");
-            for (int pixel=coloredIndex[i+1][0]; pixel<coloredIndex[i][0]; pixel++){
-              PixelArray[pixel][width2-coloredIndex[i+1][1]-1]=0; // rgb value of black
+      } else {
+        for (int i=0; i<coloredIndex.length - 2; i++){
+          if (i == 0){
+            for (int j = 1; j<3; j++){
+              if (coloredIndex[i][0] < coloredIndex[i+j][0]){
+                //System.out.println("Gotcha");
+                for (int pixel=coloredIndex[i][0]; pixel<coloredIndex[i+j][0]; pixel++){
+                  PixelArray[pixel][width2-coloredIndex[i][1]-1]=0; // rgb value of black
+                }
+              }
+              if (coloredIndex[i][0] > coloredIndex[i+j][0]){
+                //System.out.println("Gotcha");
+                for (int pixel=coloredIndex[i+j][0]; pixel<coloredIndex[i][0]; pixel++){
+                  PixelArray[pixel][width2-coloredIndex[i+j][1]-1]=0; // rgb value of black
+                }
+              }
+              if (coloredIndex[i][1] < coloredIndex[i+j][1]){
+                //System.out.println("Gotcha");
+                for (int pixel=coloredIndex[i][1]; pixel<coloredIndex[i+j][1]; pixel++){
+                  PixelArray[coloredIndex[i][0]][width2-pixel-1]=0; // rgb value of black
+                }
+              }
+            }
+          } else {
+            if (coloredIndex[i][0] < coloredIndex[i+2][0]){
+              //System.out.println("Gotcha");
+              for (int pixel=coloredIndex[i][0]; pixel<coloredIndex[i+2][0]; pixel++){
+                PixelArray[pixel][width2-coloredIndex[i][1]-1]=0; // rgb value of black
+              }
+            }
+            if (coloredIndex[i][0] > coloredIndex[i+2][0]){
+              //System.out.println("Gotcha");
+              for (int pixel=coloredIndex[i+2][0]; pixel<coloredIndex[i][0]; pixel++){
+                PixelArray[pixel][width2-coloredIndex[i+2][1]-1]=0; // rgb value of black
+              }
+            }
+            if (coloredIndex[i][1] < coloredIndex[i+2][1]){
+              //System.out.println("Gotcha");
+              for (int pixel=coloredIndex[i][1]; pixel<coloredIndex[i+2][1]; pixel++){
+                PixelArray[coloredIndex[i][0]][width2-pixel-1]=0; // rgb value of black
+              }
             }
           }
-          if (coloredIndex[i][1] < coloredIndex[i+1][1]){
-            //System.out.println("Gotcha");
-            for (int pixel=coloredIndex[i][1]; pixel<coloredIndex[i+1][1]; pixel++){
-              PixelArray[coloredIndex[i][0]][width2-pixel-1]=0; // rgb value of black
-            }
-          }
+
         }
-
       }
+
 
       BufferedImage bufferImage=new BufferedImage(height, width,BufferedImage.TYPE_INT_RGB);
       for(int y=0;y<height2;y++){
