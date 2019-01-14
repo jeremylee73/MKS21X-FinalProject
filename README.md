@@ -48,3 +48,7 @@ Jeremy - I changed the input in the terminal to take the equation in 'ax^2 + bx 
 January 12, 2019
 ------------------------------------------------------------------------------------------------------------------------------
 Jeremy - I fixed a bug with translateLeftRight and updated the input so that after you type the equation you can use "trN", "tuN", "duN", and "drN" to transform when N is the number you translate/dilate by. I also adjusted the input such that you don't need to add a coefficient if the coefficient is 1, so x is the same as 1x and x^2 is the same as 1x^2. In addition, I optimized the display function so that it fills in gaps between dots when the slope of the line is above or below 1 in magnitude. Before, when we displayed 20x it was very blurry because there were only a few dots to satisfy the equation, but now it fills in those gaps. We still need to get it working for quadratics. I got it working for quadratics with leading coefficient greater than or equal to 1, but when it goes to 0.2 for example, the graph starts to look like a compilation of Ls.
+
+January 13, 2019
+------------------------------------------------------------------------------------------------------------------------------
+Jeremy - I fixed a bug with solve, where it would perform the quadratic equation on linear functions and lead to division by zero. I just made it check for whether the coefficient of x^2 was zero. I also cleaned up some of the code by removing some of the commented out code.
