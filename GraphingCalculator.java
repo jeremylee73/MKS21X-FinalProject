@@ -155,8 +155,8 @@ public class GraphingCalculator {
     System.out.println(c2);
     System.out.println(findRoots(q2, x2, c2));
     // Testing storeVals
-    SingleGraph output = new SingleGraph(2001,2001,q,x,c);
-    SingleGraph output2 = new SingleGraph(2001,2001,q2,x2,c2);
+    SingleGraph output = new SingleGraph(2001,2001,q,x,c * -1);
+    SingleGraph output2 = new SingleGraph(2001,2001,q2,x2,c2 * -1);
 
     // Looking for transformations in input
     if (args.length > 0){
