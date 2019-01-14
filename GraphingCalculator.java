@@ -156,10 +156,11 @@ public class GraphingCalculator {
     System.out.println(findRoots(q2, x2, c2));
     // Testing storeVals
     SingleGraph output = new SingleGraph(2001,2001,q,x,c);
+    SingleGraph output2 = new SingleGraph(2001,2001,q2,x2,c2);
 
     // Looking for transformations in input
     if (args.length > 0){
-      for (i=0; i<args.length; i++){
+      for (i=0; i<args.length && !args[i].equals("new"); i++){
         if (args[i].length() >= 2){
           char a = args[i].charAt(0);
           char b = args[i].charAt(1);
@@ -192,6 +193,40 @@ public class GraphingCalculator {
       }
     }
 
+    if (i + 1 < args.length) {
+      for (i=i + 1; i<args.length && !args[i].equals("new"); i++){
+        if (args[i].length() >= 2){
+          char a2 = args[i].charAt(0);
+          char b2 = args[i].charAt(1);
+          if (a2 == 't') { // Translations
+            if (b2 == 'u') { // translate up
+              output2.translateUpDown(Integer.parseInt(args[i].substring(2,args[i].length())));
+            }
+            if (b2 == 'r') { // translate right
+              output2.translateLeftRight(Integer.parseInt(args[i].substring(2,args[i].length())));
+            }
+          }
+          if (a2 == 'd') { // Dilations
+            if (b2 == 'u') { // dilate up
+              output2.dilateUpDown(Integer.parseInt(args[i].substring(2,args[i].length())));
+            }
+            if (b2 == 'r') { // dilate right
+              output2.dilateLeftRight(Integer.parseInt(args[i].substring(2,args[i].length())));
+            }
+          }
+          if (a2 == 'r'){ // Rotations
+            if (args[i].length() >= 3){
+              if (args[i].substring(1,3).equals("cc")){
+                output2.rotate90CC();
+              }
+            } else if (b2 == 'c'){
+              output2.rotate90C();
+            }
+          }
+        }
+      }
+    }
+
     // Testing dilates
     //output.dilateUpDown(5);
     //output.dilateLeftRight(5);
@@ -207,5 +242,6 @@ public class GraphingCalculator {
 
     // Testing display
     output.display();
+    output2.display();
   }
 }
