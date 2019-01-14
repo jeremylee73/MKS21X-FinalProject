@@ -48,75 +48,68 @@ public class SingleGraph {
               }
           }
       }
+
+      // Fills in gaps between points to stop blurriness
       if (q1 == 0){
         for (int i=0; i<coloredIndex.length - 1; i++){
-
             if (coloredIndex[i][0] < coloredIndex[i+1][0]){
-              //System.out.println("Gotcha");
               for (int pixel=coloredIndex[i][0]; pixel<coloredIndex[i+1][0]; pixel++){
                 PixelArray[pixel][width2-coloredIndex[i][1]-1]=0; // rgb value of black
               }
             }
             if (coloredIndex[i][0] > coloredIndex[i+1][0]){
-              //System.out.println("Gotcha");
               for (int pixel=coloredIndex[i+1][0]; pixel<coloredIndex[i][0]; pixel++){
                 PixelArray[pixel][width2-coloredIndex[i+1][1]-1]=0; // rgb value of black
               }
             }
             if (coloredIndex[i][1] < coloredIndex[i+1][1]){
-              //System.out.println("Gotcha");
               for (int pixel=coloredIndex[i][1]; pixel<coloredIndex[i+1][1]; pixel++){
                 PixelArray[coloredIndex[i][0]][width2-pixel-1]=0; // rgb value of black
               }
             }
           }
-      } else {
-        for (int i=0; i<coloredIndex.length - 2; i++){
-          if (i == 0){
-            for (int j = 1; j<3; j++){
-              if (coloredIndex[i][0] < coloredIndex[i+j][0]){
-                //System.out.println("Gotcha");
-                for (int pixel=coloredIndex[i][0]; pixel<coloredIndex[i+j][0]; pixel++){
-                  PixelArray[pixel][width2-coloredIndex[i][1]-1]=0; // rgb value of black
-                }
-              }
-              if (coloredIndex[i][0] > coloredIndex[i+j][0]){
-                //System.out.println("Gotcha");
-                for (int pixel=coloredIndex[i+j][0]; pixel<coloredIndex[i][0]; pixel++){
-                  PixelArray[pixel][width2-coloredIndex[i+j][1]-1]=0; // rgb value of black
-                }
-              }
-              if (coloredIndex[i][1] < coloredIndex[i+j][1]){
-                //System.out.println("Gotcha");
-                for (int pixel=coloredIndex[i][1]; pixel<coloredIndex[i+j][1]; pixel++){
-                  PixelArray[coloredIndex[i][0]][width2-pixel-1]=0; // rgb value of black
-                }
-              }
-            }
-          } else {
-            if (coloredIndex[i][0] < coloredIndex[i+2][0]){
-              //System.out.println("Gotcha");
-              for (int pixel=coloredIndex[i][0]; pixel<coloredIndex[i+2][0]; pixel++){
-                PixelArray[pixel][width2-coloredIndex[i][1]-1]=0; // rgb value of black
-              }
-            }
-            if (coloredIndex[i][0] > coloredIndex[i+2][0]){
-              //System.out.println("Gotcha");
-              for (int pixel=coloredIndex[i+2][0]; pixel<coloredIndex[i][0]; pixel++){
-                PixelArray[pixel][width2-coloredIndex[i+2][1]-1]=0; // rgb value of black
-              }
-            }
-            if (coloredIndex[i][1] < coloredIndex[i+2][1]){
-              //System.out.println("Gotcha");
-              for (int pixel=coloredIndex[i][1]; pixel<coloredIndex[i+2][1]; pixel++){
-                PixelArray[coloredIndex[i][0]][width2-pixel-1]=0; // rgb value of black
-              }
-            }
-          }
-
-        }
       }
+      // For quadratics (not yet fully functional)
 
+      // else {
+      //   for (int i=0; i<coloredIndex.length - 2; i++){
+      //     if (i == 0){
+      //       for (int j = 1; j<3; j++){
+      //         if (coloredIndex[i][0] < coloredIndex[i+j][0]){
+      //           for (int pixel=coloredIndex[i][0]; pixel<coloredIndex[i+j][0]; pixel++){
+      //             PixelArray[pixel][width2-coloredIndex[i][1]-1]=0; // rgb value of black
+      //           }
+      //         }
+      //         if (coloredIndex[i][0] > coloredIndex[i+j][0]){
+      //           for (int pixel=coloredIndex[i+j][0]; pixel<coloredIndex[i][0]; pixel++){
+      //             PixelArray[pixel][width2-coloredIndex[i+j][1]-1]=0; // rgb value of black
+      //           }
+      //         }
+      //         if (coloredIndex[i][1] < coloredIndex[i+j][1]){
+      //           for (int pixel=coloredIndex[i][1]; pixel<coloredIndex[i+j][1]; pixel++){
+      //             PixelArray[coloredIndex[i][0]][width2-pixel-1]=0; // rgb value of black
+      //           }
+      //         }
+      //       }
+      //     } else {
+      //       if (coloredIndex[i][0] < coloredIndex[i+2][0]){
+      //         for (int pixel=coloredIndex[i][0]; pixel<coloredIndex[i+2][0]; pixel++){
+      //           PixelArray[pixel][width2-coloredIndex[i][1]-1]=0; // rgb value of black
+      //         }
+      //       }
+      //       if (coloredIndex[i][0] > coloredIndex[i+2][0]){
+      //         for (int pixel=coloredIndex[i+2][0]; pixel<coloredIndex[i][0]; pixel++){
+      //           PixelArray[pixel][width2-coloredIndex[i+2][1]-1]=0; // rgb value of black
+      //         }
+      //       }
+      //       if (coloredIndex[i][1] < coloredIndex[i+2][1]){
+      //         for (int pixel=coloredIndex[i][1]; pixel<coloredIndex[i+2][1]; pixel++){
+      //           PixelArray[coloredIndex[i][0]][width2-pixel-1]=0; // rgb value of black
+      //         }
+      //       }
+      //     }
+      //   }
+      // }
 
       BufferedImage bufferImage=new BufferedImage(height, width,BufferedImage.TYPE_INT_RGB);
       for(int y=0;y<height2;y++){
@@ -133,25 +126,30 @@ public class SingleGraph {
     }
   }
 
+  // Returns x
   public double getX(){
     return x1;
   }
 
+  // Returns c
   public int getC(){
     return c1;
   }
 
+  // Translates graph vertically by a units
   public void translateUpDown(int a) {
     c1 = (int) Math.round(c1 + a);
     storeVals(q1, x1, c1);
   }
 
+  // Translates graph horizontally by a units
   public void translateLeftRight(int a) {
     c1 = (int) Math.round((q1*a*a)+(-x1*a)+c1);
     x1 = x1 + ((-2 * q1) * a);
     storeVals(q1, x1, c1);
   }
 
+  // Dilates graph vertically by a factor of a
   public void dilateUpDown(int a) {
     q1 = q1 * a;
     x1 = x1 * a;
@@ -159,12 +157,14 @@ public class SingleGraph {
     storeVals(q1, x1, c1);
   }
 
+  // Dilates graph horizontally by a factor of a
   public void dilateLeftRight(int a) {
     x1 = x1 / a;
     q1 = q1 / (a*a);
     storeVals(q1, x1, c1);
   }
 
+  // Rotates graph 90 degrees counterclockwise
   public void rotate90CC(){
     for (int i=0; i<height; i++){
       for (int j=0; j<width; j++){
@@ -180,6 +180,7 @@ public class SingleGraph {
     }
   }
 
+  // Rotates graph 90 degrees clockwise
   public void rotate90C(){
     for (int i=0; i<height; i++){
       for (int j=0; j<width; j++){
@@ -195,6 +196,7 @@ public class SingleGraph {
     }
   }
 
+  // Stores values that satisfy y = q(x^2) + x(x) + c into graph
   public void storeVals(double q, double x, int c){
     for (int i=0; i<height; i++){
       for (int j=0; j<width; j++){
@@ -208,6 +210,7 @@ public class SingleGraph {
     }
   }
 
+  // Prints all values that satisfy the equation
   public String toString(){
     String ans = "";
     for (int i=0; i<graph.length; i++){
