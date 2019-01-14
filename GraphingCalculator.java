@@ -5,26 +5,32 @@ import javax.imageio.ImageIO;
 public class GraphingCalculator {
 
   public static double[] solve(double q1, double x1, int c1, double q2, double x2, int c2){
-    double dq = q2 - q1;
-    double dx = x2 - x1;
-    double dc = (c2 * 1.0) - c1;
-    double[] ans = new double[2];
-    ans[0] = ((-1*dx) + Math.sqrt((dx*dx)-(4*(dc*dq)))) / (2*dq);
-    ans[1] = ((-1*dx) - Math.sqrt((dx*dx)-(4*(dc*dq)))) / (2*dq);
-    return ans;
+    if (q1 != q2){
+      double dq = q2 - q1;
+      double dx = x2 - x1;
+      double dc = (c2 * 1.0) - c1;
+      double[] ans = new double[2];
+      ans[0] = ((-1*dx) + Math.sqrt((dx*dx)-(4*(dc*dq)))) / (2*dq);
+      ans[1] = ((-1*dx) - Math.sqrt((dx*dx)-(4*(dc*dq)))) / (2*dq);
+      return ans;
+    } else {
+      double[] ans = new double[1];
+      double newX = x2 - x1;
+      double newC = (c1 * 1.0) - c2;
+      ans[0] = newC / newX;
+      return ans;
+    }
   }
 
   public static String findRoots(double q1, double x1, int c1){
     double[] roots = solve(q1, x1, c1, 0, 0, 0);
-    if (roots[0] == roots[1]){
+    if (q1 == 0 || roots[0] == roots[1]){
       return "(" + roots[0] + ",0)";
     }
     return "(" + roots[0] + ",0);(" + roots[1] + ",0)";
   }
 
   public static void main(String[] args){
-    // Testing solve
-    System.out.println(findRoots(1, 6, -16)); // Should return -8 and 2
     double x = 0;
     int c = 0;
     double q = 0;
@@ -83,41 +89,8 @@ public class GraphingCalculator {
       System.out.println(c);
       System.out.println(findRoots(q, x, c));
 
-    // if (args.length > 0) {
-    //   try{
-    //     x = Double.parseDouble(args[0]);
-    //   }catch(NumberFormatException e) {
-    //     System.out.println("Make sure that you have a double for your first input");
-    //   }
-    // }
-    //
-    // if (args.length > 1) {
-    //   try{
-    //     c = Integer.parseInt(args[1]);
-    //   }catch(NumberFormatException e) {
-    //     System.out.println("Make sure that you have an integer for your second input");
-    //   }
-    // }
-
-
-    /*if (args.length > 2) {                                                                     This section was meant to
-      try{                                                                                       allow users to input values into
-        h = Integer.parseInt(args[2]);                                                           the function to modify the dimensions
-      }catch(NumberFormatException e) {                                                          of the graph. We ran into a couple of
-        System.out.println("Make sure that you have an integer for your third input");           unexpected problems and will attempt to
-      }                                                                                          do this later.
-    }
-
-    if (args.length > 3) {
-      try{
-        w = Integer.parseInt(args[3]);
-      }catch(NumberFormatException e) {
-        System.out.println("Make sure that you have an integer for your fourth input");
-      }
-    }*/
     // Testing storeVals
     SingleGraph output = new SingleGraph(2001,2001,q,x,c);
-    // System.out.println(graph);
 
     if (args.length > 0){
       for (int i=0; i<args.length; i++){
@@ -144,13 +117,11 @@ public class GraphingCalculator {
         }
       }
 
-    //System.out.println("Root: (" + findRoots(output.getX(), output.getC()) + ",0)");
-
-    // // Testing dilates
+    // Testing dilates
     //output.dilateUpDown(5);
     //output.dilateLeftRight(5);
 
-    // // Testing translates
+    // Testing translates
     //output.translateLeftRight(100);
     //output.translateUpDown(100);
 
