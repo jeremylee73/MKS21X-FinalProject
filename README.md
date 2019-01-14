@@ -51,4 +51,4 @@ Jeremy - I fixed a bug with translateLeftRight and updated the input so that aft
 
 January 13, 2019
 ------------------------------------------------------------------------------------------------------------------------------
-Jeremy - I fixed a bug with solve, where it would perform the quadratic equation on linear functions and lead to division by zero. I just made it check for whether the coefficient of x^2 was zero. I also cleaned up some of the code by removing some of the commented out code.
+Jeremy - I fixed a bug with solve, where it would perform the quadratic equation on linear functions and lead to division by zero. I just made it check for whether the coefficient of x^2 was zero. I also cleaned up some of the code by removing some of the commented out code. I also added some comments of my own to some of the code to clarify its function and commented out the optimized display for quadratics until we can get it functional.
