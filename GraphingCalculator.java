@@ -36,12 +36,17 @@ public class GraphingCalculator {
     double q = 0; // coefficient of x^2
     double x = 0; // coefficient of x
     int c = 0; // constant
+    double q2 = 0;
+    double x2 = 0;
+    int c2 = 0;
     int h = 2001; // height of image & graph
     int w = 2001; // width of image & graph
 
+    int i = 0;
     if (args.length > 0){
       int sign = 1; // determines positive or negative term
-      for (int i=0; i<args.length; i++){
+      boolean end = false;
+      for (i=0; i<args.length && !end; i++){
         boolean presentX = false;
         boolean deg1 = false;
         boolean deg2 = false;
@@ -85,6 +90,58 @@ public class GraphingCalculator {
             }
           }
         }
+        if (i + 1< args.length && args[i + 1].equals("new")) {
+          end = true;
+        }
+      }
+    }
+
+    if (i + 1 < args.length) {
+      int sign2 = 1;
+      for (i = i + 1;i < args.length;i += 1) {
+        boolean presentX2 = false;
+        boolean deg12 = false;
+        boolean deg22 = false;
+        char firstChar2 = args[i].charAt(0);
+        if (firstChar2 != 't' && firstChar2 != 'd' && firstChar2 != 'r'){ // checks that the term is not a transformation
+          // Checking for sign
+          if (args[i].equals("+")){
+            sign2 = 1;
+          } else if (args[i].equals("-")){
+            sign2 = -1;
+          } else {
+            for (int j=0; j<args[i].length(); j++){
+              if (args[i].charAt(j) == 'x'){
+                presentX2 = true; // term could be x or x^2
+                if (j == args[i].length()-1){
+                  deg12 = true; // term is x
+                } else if ((j<args[i].length()-2) && (args[i].substring(j, j+3).equals("x^2"))){
+                  deg22 = true; // term is x^2
+                }
+              }
+            }
+
+            if (!presentX2){ // has to be a constant
+              c2 = sign2 * Integer.parseInt(args[i]);
+            } else if (deg12){
+              if (args[i].length() != 1 && !(args[i].equals("-x"))){
+                x2 = sign2 * Double.parseDouble(args[i].substring(0, args[i].length()-1)); // not x or -x
+              } else if (args[i].length() == 1){ // has to be 1x
+                x2 = 1;
+              } else { // has to be -1x
+                x2 = -1;
+              }
+            } else if (deg22){
+              if (args[i].length() != 3 && !(args[i].equals("-x^2"))){
+                q2 = sign2 * Double.parseDouble(args[i].substring(0, args[i].length()-3)); // not x^2 or -x^2
+              } else if (args[i].length() == 3){ // has to be 1x^2
+                q2 = 1;
+              } else { // has to be -1x^2
+                q2 = -1;
+              }
+            }
+          }
+        }
       }
     }
 
@@ -92,13 +149,17 @@ public class GraphingCalculator {
     System.out.println(x);
     System.out.println(c);
     System.out.println(findRoots(q, x, c));
-
+    System.out.println("------------------");
+    System.out.println(q2);
+    System.out.println(x2);
+    System.out.println(c2);
+    System.out.println(findRoots(q2, x2, c2));
     // Testing storeVals
     SingleGraph output = new SingleGraph(2001,2001,q,x,c);
 
     // Looking for transformations in input
     if (args.length > 0){
-      for (int i=0; i<args.length; i++){
+      for (i=0; i<args.length; i++){
         if (args[i].length() >= 2){
           char a = args[i].charAt(0);
           char b = args[i].charAt(1);
