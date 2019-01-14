@@ -109,7 +109,7 @@ public class SingleGraph {
       BufferedImage bufferImage=new BufferedImage(height, width,BufferedImage.TYPE_INT_RGB);
       for(int y=0;y<height2;y++){
           for(int x=0;x<width2;x++){
-            if (graph[y][width2 - x - 1]) {
+            if (graph[x][y]) {
               bufferImage.setRGB(x, y, PixelArray[x][y]);
             }
             else {
