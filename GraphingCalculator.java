@@ -45,7 +45,8 @@ public class GraphingCalculator {
         boolean presentX = false;
         boolean deg1 = false;
         boolean deg2 = false;
-        if (!(args[i].contains("du") || args[i].contains("dr") || args[i].contains("tu") || args[i].contains("tr"))){ // checks that the term is not a transformation
+        char firstChar = args[i].charAt(0);
+        if (firstChar != 't' && firstChar != 'd' && firstChar != 'r'){ // checks that the term is not a transformation
           // Checking for sign
           if (args[i].equals("+")){
             sign = 1;
@@ -115,6 +116,15 @@ public class GraphingCalculator {
             }
             if (b == 'r') { // dilate right
               output.dilateLeftRight(Integer.parseInt(args[i].substring(2,args[i].length())));
+            }
+          }
+          if (a == 'r'){ // Rotations
+            if (args[i].length() >= 3){
+              if (args[i].substring(1,3).equals("cc")){
+                output.rotate90CC();
+              }
+            } else if (b == 'c'){
+              output.rotate90C();
             }
           }
         }
