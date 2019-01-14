@@ -40,11 +40,6 @@ public class SingleGraph {
                 coloredIndex[count][0] = j;
                 coloredIndex[count][1] = i;
                 count++;
-              } else{
-                PixelArray[j][width2-i-1]=16777215; // rgb value of white
-              }
-              if (i == width2 / 2 || j == height2 / 2){
-                PixelArray[j][width2-i-1]=0; // rgb value of black
               }
           }
       }
@@ -114,7 +109,12 @@ public class SingleGraph {
       BufferedImage bufferImage=new BufferedImage(height, width,BufferedImage.TYPE_INT_RGB);
       for(int y=0;y<height2;y++){
           for(int x=0;x<width2;x++){
+            if (graph[x][y]) {
               bufferImage.setRGB(x, y, PixelArray[x][y]);
+            }
+            else {
+              bufferImage.setRGB(x,y,bufferimage.getRGB(x,y));
+            }
           }
       }
 

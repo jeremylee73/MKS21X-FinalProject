@@ -241,7 +241,40 @@ public class GraphingCalculator {
     //output.rotate90C();
 
     // Testing display
+    clear();
     output.display();
     output2.display();
   }
+
+  public static void clear() {
+    try {
+      int[][] PixelArray;
+      BufferedImage bufferimage=ImageIO.read(new File("graph.jpg"));
+      int height2=bufferimage.getHeight();
+      int width2=bufferimage.getWidth();
+      PixelArray=new int[width2][height2];
+
+      for(int i=1;i<width2;i++){
+        for(int j=0;j<height2;j++){
+           PixelArray[j][width2-i-1]=16777215; // rgb value of white
+           if (i == width2 / 2 || j == height2 / 2){
+             PixelArray[j][width2-i-1]=0; // rgb value of black
+           }
+         }
+      }
+      BufferedImage bufferImage=new BufferedImage(2001, 2001,BufferedImage.TYPE_INT_RGB);
+      for(int y=0;y<height2;y++){
+          for(int x=0;x<width2;x++){
+              bufferImage.setRGB(x, y, PixelArray[x][y]);
+          }
+      }
+
+      File outputfile = new File("graph.jpg");
+      ImageIO.write(bufferImage, "jpg", outputfile);
+    }
+    catch(Exception ee){
+      ee.printStackTrace();
+    }
+  }
+
 }
