@@ -19,7 +19,6 @@ public class GraphingCalculator {
       if (ans[1] == -0){
         ans[1] = 0;
       }
-      System.out.println(ans[0]);
       return ans;
     } else { // linear formula
       double[] ans = new double[1];
@@ -29,7 +28,6 @@ public class GraphingCalculator {
       if (ans[0] == -0){
         ans[0] = 0;
       }
-      //System.out.println(ans[0]);
       return ans;
     }
   }

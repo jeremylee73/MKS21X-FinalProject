@@ -30,10 +30,6 @@ public class SingleGraph {
       int width2=bufferimage.getWidth();
       PixelArray=new int[width2][height2];
 
-      if (q1 != 0){
-        rotate90CC();
-      }
-
       // Enters coordinates from graph and x and y axis.
       int count = 0;
       int[][] coloredIndex = new int[PixelArray.length][2];
@@ -48,50 +44,6 @@ public class SingleGraph {
           }
       }
 
-
-
-      // For quadratics (not yet fully functional)
-
-      // else {
-      //   for (int i=0; i<coloredIndex.length - 2; i++){
-      //     if (i == 0){
-      //       for (int j = 1; j<3; j++){
-      //         if (coloredIndex[i][0] < coloredIndex[i+j][0]){
-      //           for (int pixel=coloredIndex[i][0]; pixel<coloredIndex[i+j][0]; pixel++){
-      //             PixelArray[pixel][width2-coloredIndex[i][1]-1]=0; // rgb value of black
-      //           }
-      //         }
-      //         if (coloredIndex[i][0] > coloredIndex[i+j][0]){
-      //           for (int pixel=coloredIndex[i+j][0]; pixel<coloredIndex[i][0]; pixel++){
-      //             PixelArray[pixel][width2-coloredIndex[i+j][1]-1]=0; // rgb value of black
-      //           }
-      //         }
-      //         if (coloredIndex[i][1] < coloredIndex[i+j][1]){
-      //           for (int pixel=coloredIndex[i][1]; pixel<coloredIndex[i+j][1]; pixel++){
-      //             PixelArray[coloredIndex[i][0]][width2-pixel-1]=0; // rgb value of black
-      //           }
-      //         }
-      //       }
-      //     } else {
-      //       if (coloredIndex[i][0] < coloredIndex[i+2][0]){
-      //         for (int pixel=coloredIndex[i][0]; pixel<coloredIndex[i+2][0]; pixel++){
-      //           PixelArray[pixel][width2-coloredIndex[i][1]-1]=0; // rgb value of black
-      //         }
-      //       }
-      //       if (coloredIndex[i][0] > coloredIndex[i+2][0]){
-      //         for (int pixel=coloredIndex[i+2][0]; pixel<coloredIndex[i][0]; pixel++){
-      //           PixelArray[pixel][width2-coloredIndex[i+2][1]-1]=0; // rgb value of black
-      //         }
-      //       }
-      //       if (coloredIndex[i][1] < coloredIndex[i+2][1]){
-      //         for (int pixel=coloredIndex[i][1]; pixel<coloredIndex[i+2][1]; pixel++){
-      //           PixelArray[coloredIndex[i][0]][width2-pixel-1]=0; // rgb value of black
-      //         }
-      //       }
-      //     }
-      //   }
-      // }
-
       BufferedImage bufferImage=new BufferedImage(height, width,BufferedImage.TYPE_INT_RGB);
       for(int y=0;y<height2;y++){
           for(int x=0;x<width2;x++){
@@ -100,7 +52,7 @@ public class SingleGraph {
       }
 
       // Fills in gaps between points to stop blurriness
-      if (q1 == 0){
+      //if (q1 == 0){
         for (int i=0; i<coloredIndex.length - 1; i++){
           if (coloredIndex[i][0] < coloredIndex[i+1][0]){
             for (int pixel=coloredIndex[i][0]; pixel<coloredIndex[i+1][0]; pixel++){
@@ -118,15 +70,15 @@ public class SingleGraph {
             }
           }
         }
-      } else{
+      //} //else {
         for (int y=0; y<height2; y++){
-          for (int x = 0; x<width2; x++){
-            if (graph[x][y]){
-              bufferImage.setRGB(x,y,0);
+            for (int x = 0; x<width2; x++){
+              if (graph[x][y]){
+                bufferImage.setRGB(x,y,0);
+              }
             }
-          }
         }
-      }
+      //}
 
       File outputfile = new File("graph.jpg");
       ImageIO.write(bufferImage, "jpg", outputfile);
@@ -208,17 +160,13 @@ public class SingleGraph {
 
   // Stores values that satisfy y = q(x^2) + x(x) + c into graph
   public void storeVals(double q, double x, int c){
-    for (int i=0; i<height; i++){
-      for (int j=0; j<width; j++){
-        if ((i-height / 2) == ((q * (j-width / 2) * (j-width / 2)) + (x*(j- width / 2)) + c)){
-          graph[i][j] = true;
-        } else {
-          //System.out.println("i: " + i + " j: " + j + " height: " + height + " width: " + width);
-          graph[i][j] = false;
-        }
+    for (int i=-1000; i<(height/2); i++){
+      int yval = (int) Math.round((q*i*i) + (x*i) + c);
+      if (yval < (height/2) && yval >= (-1 * height / 2)){
+        graph[yval+1000][i+1000] = true;
+      }
       }
     }
-  }
 
   // Prints all values that satisfy the equation
   public String toString(){
