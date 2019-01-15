@@ -242,9 +242,7 @@ public class GraphingCalculator {
 
     // Testing display
     clear();
-    output.rotate90CC();
     output.display();
-    output2.rotate90CC();
     output2.display();
   }
 

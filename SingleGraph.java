@@ -30,6 +30,10 @@ public class SingleGraph {
       int width2=bufferimage.getWidth();
       PixelArray=new int[width2][height2];
 
+      if (q1 != 0){
+        rotate90CC();
+      }
+
       // Enters coordinates from graph and x and y axis.
       int count = 0;
       int[][] coloredIndex = new int[PixelArray.length][2];
@@ -44,26 +48,8 @@ public class SingleGraph {
           }
       }
 
-      // Fills in gaps between points to stop blurriness
-      if (q1 == 0){
-        for (int i=0; i<coloredIndex.length - 1; i++){
-            if (coloredIndex[i][0] < coloredIndex[i+1][0]){
-              for (int pixel=coloredIndex[i][0]; pixel<coloredIndex[i+1][0]; pixel++){
-                PixelArray[pixel][width2-coloredIndex[i][1]-1]=0; // rgb value of black
-              }
-            }
-            if (coloredIndex[i][0] > coloredIndex[i+1][0]){
-              for (int pixel=coloredIndex[i+1][0]; pixel<coloredIndex[i][0]; pixel++){
-                PixelArray[pixel][width2-coloredIndex[i+1][1]-1]=0; // rgb value of black
-              }
-            }
-            if (coloredIndex[i][1] < coloredIndex[i+1][1]){
-              for (int pixel=coloredIndex[i][1]; pixel<coloredIndex[i+1][1]; pixel++){
-                PixelArray[coloredIndex[i][0]][width2-pixel-1]=0; // rgb value of black
-              }
-            }
-          }
-      }
+
+
       // For quadratics (not yet fully functional)
 
       // else {
@@ -109,13 +95,37 @@ public class SingleGraph {
       BufferedImage bufferImage=new BufferedImage(height, width,BufferedImage.TYPE_INT_RGB);
       for(int y=0;y<height2;y++){
           for(int x=0;x<width2;x++){
-            if (graph[x][y]) {
-              bufferImage.setRGB(x, y, PixelArray[x][y]);
-            }
-            else {
-              bufferImage.setRGB(x,y,bufferimage.getRGB(x,y));
+            bufferImage.setRGB(x,y,bufferimage.getRGB(x,y));
+          }
+      }
+
+      // Fills in gaps between points to stop blurriness
+      if (q1 == 0){
+        for (int i=0; i<coloredIndex.length - 1; i++){
+          if (coloredIndex[i][0] < coloredIndex[i+1][0]){
+            for (int pixel=coloredIndex[i][0]; pixel<coloredIndex[i+1][0]; pixel++){
+              bufferImage.setRGB(pixel, width2-coloredIndex[i][1]-1, 0); // rgb value of black
             }
           }
+          if (coloredIndex[i][0] > coloredIndex[i+1][0]){
+            for (int pixel=coloredIndex[i+1][0]; pixel<coloredIndex[i][0]; pixel++){
+              bufferImage.setRGB(pixel, width2-coloredIndex[i+1][1]-1, 0); // rgb value of black
+            }
+          }
+          if (coloredIndex[i][1] < coloredIndex[i+1][1]){
+            for (int pixel=coloredIndex[i][1]; pixel<coloredIndex[i+1][1]; pixel++){
+              bufferImage.setRGB(coloredIndex[i][0], width2-pixel-1, 0); // rgb value of black
+            }
+          }
+        }
+      } else{
+        for (int y=0; y<height2; y++){
+          for (int x = 0; x<width2; x++){
+            if (graph[x][y]){
+              bufferImage.setRGB(x,y,0);
+            }
+          }
+        }
       }
 
       File outputfile = new File("graph.jpg");
