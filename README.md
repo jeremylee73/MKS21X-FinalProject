@@ -59,3 +59,7 @@ January 13, 2019
 Jeremy - I fixed a bug with solve, where it would perform the quadratic equation on linear functions and lead to division by zero. I just made it check for whether the coefficient of x^2 was zero. I also cleaned up some of the code by removing some of the commented out code. I also added some comments of my own to some of the code to clarify its function and commented out the optimized display for quadratics until we can get it functional. I also added an input option of "rc" or "rcc" to call the rotate function on the inputted graph.
 
 Jacob - I made it so that you can graph two graphs on the same set of axes and translate them. To do this you just separate each graph with the word "new". This only works on two functions presently. The only issue is that this makes the graphs sideways.
+
+January 14, 2019
+------------------------------------------------------------------------------------------------------------------------------
+Jeremy - I fixed a bug with the display where the optimization from earlier was not working with the two graphs. I also added some code to solve for the intercept(s) of the two graphs.
