@@ -13,12 +13,23 @@ public class GraphingCalculator {
       double[] ans = new double[2];
       ans[0] = ((-1*dx) + Math.sqrt((dx*dx)-(4*(dc*dq)))) / (2*dq);
       ans[1] = ((-1*dx) - Math.sqrt((dx*dx)-(4*(dc*dq)))) / (2*dq);
+      if (ans[0] == -0){
+        ans[0] = 0;
+      }
+      if (ans[1] == -0){
+        ans[1] = 0;
+      }
+      System.out.println(ans[0]);
       return ans;
     } else { // linear formula
       double[] ans = new double[1];
       double newX = x2 - x1;
       double newC = (c1 * 1.0) - c2;
       ans[0] = newC / newX;
+      if (ans[0] == -0){
+        ans[0] = 0;
+      }
+      //System.out.println(ans[0]);
       return ans;
     }
   }
@@ -145,15 +156,23 @@ public class GraphingCalculator {
       }
     }
 
-    System.out.println(q);
-    System.out.println(x);
-    System.out.println(c);
-    System.out.println(findRoots(q, x, c));
+    System.out.println("a: " + q);
+    System.out.println("b: " + x);
+    System.out.println("c: " + c);
+    System.out.println("Root(s): " + findRoots(q, x, c));
     System.out.println("------------------");
-    System.out.println(q2);
-    System.out.println(x2);
-    System.out.println(c2);
-    System.out.println(findRoots(q2, x2, c2));
+    System.out.println("a: " + q2);
+    System.out.println("b: " + x2);
+    System.out.println("c: " + c2);
+    System.out.println("Root(s): " + findRoots(q2, x2, c2));
+
+    double[] solvedValues = solve(q, x, c, q2, x2, c2);
+    for (int valI=0; valI<solvedValues.length; valI++){
+      double xval = solvedValues[valI];
+      double yval = (q*xval*xval) + (x * xval) + c;
+      System.out.println("Intercept: ("+xval+", "+yval+")");
+    }
+
     // Testing storeVals
     SingleGraph output = new SingleGraph(2001,2001,q,x,c);
     SingleGraph output2 = new SingleGraph(2001,2001,q2,x2,c2);
