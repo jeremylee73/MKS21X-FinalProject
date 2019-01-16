@@ -51,17 +51,30 @@ public class SingleGraph {
           }
       }
 
+      for (int i=0; i<coloredIndex.length; i++){
+        for (int j=0; j<coloredIndex[i].length; j++){
+          if (j == coloredIndex[i].length - 1){
+            System.out.print((coloredIndex[i][j]-1000)+")");
+          } else {
+            System.out.print("("+(coloredIndex[i][j]-1000)+",");
+          }
+        }
+        System.out.println("");
+      }
+
       // Fills in gaps between points to stop blurriness
       //if (q1 == 0){
-        for (int i=0; i<coloredIndex.length - 1; i++){
-          if (coloredIndex[i][0] < coloredIndex[i+1][0]){
-            for (int pixel=coloredIndex[i][0]; pixel<coloredIndex[i+1][0]; pixel++){
-              bufferImage.setRGB(pixel, width2-coloredIndex[i][1]-1, 0); // rgb value of black
+        for (int i=1; i<coloredIndex.length - 1; i++){
+          if (q1==0){ // Add test for horizontal also
+            if (coloredIndex[i][0] < coloredIndex[i+1][0]){
+              for (int pixel=coloredIndex[i][0]; pixel<coloredIndex[i+1][0]; pixel++){
+                bufferImage.setRGB(pixel, width2-coloredIndex[i][1]-1, 0); // rgb value of black
+              }
             }
-          }
-          if (coloredIndex[i][0] > coloredIndex[i+1][0]){
-            for (int pixel=coloredIndex[i+1][0]; pixel<coloredIndex[i][0]; pixel++){
-              bufferImage.setRGB(pixel, width2-coloredIndex[i+1][1]-1, 0); // rgb value of black
+            if (coloredIndex[i][0] > coloredIndex[i+1][0]){
+              for (int pixel=coloredIndex[i+1][0]; pixel<coloredIndex[i][0]; pixel++){
+                bufferImage.setRGB(pixel, width2-coloredIndex[i+1][1]-1, 0); // rgb value of black
+              }
             }
           }
           if (coloredIndex[i][1] < coloredIndex[i+1][1]){
@@ -69,12 +82,18 @@ public class SingleGraph {
               bufferImage.setRGB(coloredIndex[i][0], width2-pixel-1, 0); // rgb value of black
             }
           }
+          if (coloredIndex[i][1] > coloredIndex[i-1][1]){
+            for (int pixel=coloredIndex[i][1]; pixel>coloredIndex[i-1][1]; pixel--){
+              bufferImage.setRGB(coloredIndex[i][0], width2-pixel-1, 0); // rgb value of black
+            }
+          }
         }
+
       //} //else {
         for (int y=0; y<height2; y++){
             for (int x = 0; x<width2; x++){
               if (graph[x][y]){
-                bufferImage.setRGB(x,y,0);
+                bufferImage.setRGB(x,height2-y-1,0);
               }
             }
         }
