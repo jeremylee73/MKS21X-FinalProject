@@ -90,3 +90,7 @@ Jacob - I made it so that you can graph two graphs on the same set of axes and t
 January 14, 2019
 ------------------------------------------------------------------------------------------------------------------------------
 Jeremy - I fixed a bug with the display where the optimization from earlier was not working with the two graphs. I also added some code to solve for the intercept(s) of the two graphs.
+
+January 15, 2019
+------------------------------------------------------------------------------------------------------------------------------
+Jeremy - I changed storeVals so that rather than checking every x and y value to satisfy the equation, I inputted every x value and rounded a y value. Hopefully, this will help the display function work for quadratics since every x value should now correspond to a y value, so we can fill the gap between two points horizontally.
