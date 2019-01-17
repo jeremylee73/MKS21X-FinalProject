@@ -94,3 +94,7 @@ Jeremy - I fixed a bug with the display where the optimization from earlier was 
 January 15, 2019
 ------------------------------------------------------------------------------------------------------------------------------
 Jeremy - I changed storeVals so that rather than checking every x and y value to satisfy the equation, I inputted every x value and rounded a y value. Hopefully, this will help the display function work for quadratics since every x value should now correspond to a y value, so we can fill the gap between two points horizontally.
+
+January 16, 2019
+------------------------------------------------------------------------------------------------------------------------------
+Jeremy - I finally got the display to work for both linear and quadratic functions by changing the storeVals function so that it tested each x individually, so there wouldn't be any gaps on the x-axis and we could focus on filling gaps vertically. I also got it working for sideways parabolas.
