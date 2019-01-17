@@ -105,6 +105,7 @@ public class GraphingCalculator {
       }
     }
 
+    // Finding coefficients of terms of second equation
     if (i + 1 < args.length) {
       int sign2 = 1;
       for (i = i + 1;i < args.length;i += 1) {
@@ -210,6 +211,7 @@ public class GraphingCalculator {
       }
     }
 
+    // Looking for transformations on second graph
     if (i + 1 < args.length) {
       for (i=i + 1; i<args.length && !args[i].equals("new"); i++){
         if (args[i].length() >= 2){
@@ -244,25 +246,12 @@ public class GraphingCalculator {
       }
     }
 
-    // Testing dilates
-    //output.dilateUpDown(5);
-    //output.dilateLeftRight(5);
-
-    // Testing translates
-    //output.translateLeftRight(100);
-    //output.translateUpDown(100);
-
-    //System.out.println("Root: (" + findRoots(output.getX(), output.getC()) + ",0)");
-
-    // Testing Rotates
-    //output.rotate90C();
-
-    // Testing display
     clear();
     output.display();
     output2.display();
   }
 
+  // Clears the graph.jpg
   public static void clear() {
     try {
       int[][] PixelArray;
