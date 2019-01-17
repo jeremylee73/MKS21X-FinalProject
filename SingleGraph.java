@@ -9,6 +9,7 @@ public class SingleGraph {
   private int c1;
   private int height;
   private int width;
+  private int numRotates = 0;
 
   public SingleGraph(int h, int w, double q, double m, int b) {
     height = h;
@@ -64,8 +65,11 @@ public class SingleGraph {
 
       // Fills in gaps between points to stop blurriness
       //if (q1 == 0){
+
+      int sidePara = numRotates % 2;
+
         for (int i=1; i<coloredIndex.length - 1; i++){
-          if (q1==0){ // Add test for horizontal also
+          if (q1==0 || sidePara == 1){ // Add test for horizontal also
             if (coloredIndex[i][0] < coloredIndex[i+1][0]){
               for (int pixel=coloredIndex[i][0]; pixel<coloredIndex[i+1][0]; pixel++){
                 bufferImage.setRGB(pixel, width2-coloredIndex[i][1]-1, 0); // rgb value of black
@@ -92,7 +96,7 @@ public class SingleGraph {
       //} //else {
         for (int y=0; y<height2; y++){
             for (int x = 0; x<width2; x++){
-              if (graph[x][y]){
+              if (graph[y][x]){
                 bufferImage.setRGB(x,height2-y-1,0);
               }
             }
@@ -147,6 +151,7 @@ public class SingleGraph {
 
   // Rotates graph 90 degrees counterclockwise
   public void rotate90CC(){
+    numRotates -= 1;
     for (int i=0; i<height; i++){
       for (int j=0; j<width; j++){
         int reformedJ = j - height / 2;
@@ -163,6 +168,7 @@ public class SingleGraph {
 
   // Rotates graph 90 degrees clockwise
   public void rotate90C(){
+    numRotates += 1;
     for (int i=0; i<height; i++){
       for (int j=0; j<width; j++){
         int reformedJ = j - height / 2;
