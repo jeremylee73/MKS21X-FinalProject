@@ -33,7 +33,7 @@ public class SingleGraph {
 
       // Enters coordinates from graph and x and y axis.
       int count = 0;
-      int[][] coloredIndex = new int[PixelArray.length][2];
+      int[][] coloredIndex = new int[PixelArray.length * 2][2];
       for(int i=1;i<width2;i++){
           for(int j=0;j<height2;j++){
               if (graph[i][j]){
@@ -132,35 +132,39 @@ public class SingleGraph {
     storeVals(q1, x1, c1);
   }
 
-  // Rotates graph 90 degrees counterclockwise
-  public void rotate90CC(){
+  // Rotates graph 90 degrees clockwise
+  public void rotate90C(){
     numRotates -= 1;
     for (int i=0; i<height; i++){
       for (int j=0; j<width; j++){
-        int reformedJ = j - height / 2;
-        int reformedI = i - width / 2;
-        if ((-1 * reformedJ) == ((q1*reformedI*reformedI) + (x1 * reformedI) + c1)){
-          graph[i][j] = true;
-          //System.out.println("("+reformedJ+","+reformedI+")");
-        } else {
-          graph[i][j] = false;
+        graph[i][j] = false;
+      }
+    }
+    for (int i=0; i<height; i++){
+      int reformedI = i-1000;
+      for (int j=-1; j<3; j+=2){
+        int reformedJ = (int) Math.round((x1+(j*Math.sqrt((x1*x1)-(4*q1*c1)+(4*q1*reformedI))))/(2*q1));
+        if (reformedJ >= -1000 && reformedJ <= 1000){
+          graph[reformedJ+1000][i] = true;
         }
       }
     }
   }
 
-  // Rotates graph 90 degrees clockwise
-  public void rotate90C(){
+  // Rotates graph 90 degrees counterclockwise
+  public void rotate90CC(){
     numRotates += 1;
     for (int i=0; i<height; i++){
       for (int j=0; j<width; j++){
-        int reformedJ = j - height / 2;
-        int reformedI = i - width / 2;
-        if (reformedJ == ((q1*reformedI*reformedI) + (-1 * x1 * reformedI) + c1)){
-          graph[i][j] = true;
-          //System.out.println("("+reformedJ+","+reformedI+")");
-        } else {
-          graph[i][j] = false;
+        graph[i][j] = false;
+      }
+    }
+    for (int i=0; i<height; i++){
+      int reformedI = i-1000;
+      for (int j=-1; j<3; j+=2){
+        int reformedJ = (int) Math.round((x1+(j*Math.sqrt((x1*x1)-(4*q1*c1)-(4*q1*reformedI))))/(-2*q1));
+        if (reformedJ >= -1000 && reformedJ <= 1000){
+          graph[reformedJ+1000][i] = true;
         }
       }
     }
