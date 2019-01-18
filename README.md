@@ -98,3 +98,7 @@ Jeremy - I changed storeVals so that rather than checking every x and y value to
 January 16, 2019
 ------------------------------------------------------------------------------------------------------------------------------
 Jeremy - I finally got the display to work for both linear and quadratic functions by changing the storeVals function so that it tested each x individually, so there wouldn't be any gaps on the x-axis and we could focus on filling gaps vertically. I also got it working for sideways parabolas.
+
+January 17, 2019
+------------------------------------------------------------------------------------------------------------------------------
+Jeremy - I worked on getting an input for the graph's window, but there are still some bugs to fix.
