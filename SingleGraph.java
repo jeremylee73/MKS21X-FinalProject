@@ -120,16 +120,16 @@ public class SingleGraph {
   }
 
   // Dilates graph vertically by a factor of a
-  public void dilateUpDown(int a) {
+  public void dilateUpDown(double a) {
     eraseVals(q1, x1, c1);
     q1 = q1 * a;
     x1 = x1 * a;
-    c1 = c1 * a;
+    c1 = (int) Math.round(c1 * a);
     storeVals(q1, x1, c1);
   }
 
   // Dilates graph horizontally by a factor of a
-  public void dilateLeftRight(int a) {
+  public void dilateLeftRight(double a) {
     eraseVals(q1, x1, c1);
     x1 = x1 / a;
     q1 = q1 / (a*a);
@@ -140,19 +140,20 @@ public class SingleGraph {
   public void rotate90C(){
     eraseVals(q1, x1, c1);
     numRotates -= 1;
-    for (int i=0; i<height; i++){
-      for (int j=0; j<width; j++){
-        graph[i][j] = false;
-      }
-    }
-    for (int i=0; i<height; i++){
-      int reformedI = i-1000;
-      for (int j=-1; j<3; j+=2){
-        int reformedJ = (int) Math.round((x1+(j*Math.sqrt((x1*x1)-(4*q1*c1)+(4*q1*reformedI))))/(2*q1));
-        if (reformedJ >= -1000 && reformedJ <= 1000){
-          graph[reformedJ+1000][i] = true;
+    if (q1 != 0){
+      for (int i=0; i<height; i++){
+        int reformedI = i-1000;
+        for (int j=-1; j<3; j+=2){
+          int reformedJ = (int) Math.round((x1+(j*Math.sqrt((x1*x1)-(4*q1*c1)+(4*q1*reformedI))))/(2*q1));
+          if (reformedJ >= -1000 && reformedJ <= 1000){
+            graph[reformedJ+1000][i] = true;
+          }
         }
       }
+    } else {
+        x1 = (-1.0 / x1);
+        c1 = (int) Math.round((c1 * 1.0) / x1);
+        storeVals(q1, x1, c1);
     }
   }
 
@@ -160,19 +161,21 @@ public class SingleGraph {
   public void rotate90CC(){
     eraseVals(q1, x1, c1);
     numRotates += 1;
-    for (int i=0; i<height; i++){
-      for (int j=0; j<width; j++){
-        graph[i][j] = false;
-      }
-    }
-    for (int i=0; i<height; i++){
-      int reformedI = i-1000;
-      for (int j=-1; j<3; j+=2){
-        int reformedJ = (int) Math.round((x1+(j*Math.sqrt((x1*x1)-(4*q1*c1)-(4*q1*reformedI))))/(-2*q1));
-        if (reformedJ >= -1000 && reformedJ <= 1000){
-          graph[reformedJ+1000][i] = true;
+    if (q1 != 0) {
+      for (int i=0; i<height; i++){
+        int reformedI = i-1000;
+        for (int j=-1; j<3; j+=2){
+          int reformedJ = (int) Math.round((x1+(j*Math.sqrt((x1*x1)-(4*q1*c1)-(4*q1*reformedI))))/(-2*q1));
+          if (reformedJ >= -1000 && reformedJ <= 1000){
+            graph[reformedJ+1000][i] = true;
+          }
         }
       }
+    } else {
+      x1 = (-1.0 / x1);
+      c1 = (int) Math.round((-c1 * 1.0) / x1);
+
+      storeVals(q1, x1, c1);
     }
   }
 
