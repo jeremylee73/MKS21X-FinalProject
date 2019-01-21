@@ -8,21 +8,22 @@ Instructions
 ------------------------------------------------------------------------------------------------------------------------------
 To run the program, first compile GraphingCalculator.java. Then, you have a couple options.
 
-You can input one graph by inputting "java GraphingCalculator ax^2 + bx + c" (Make sure to have spaces between terms and signs. If the term has a coefficient of 0, you can just leave it out, and if it has a coefficient of 1 or -1, you can leave out the "1" part)
+- You can either enter one graph or two graphs by entering "1" or "2".
+- You can input one graph by inputting "java GraphingCalculator ax^2 + bx + c" (Make sure to have spaces between terms and signs. If the term has a coefficient of 0, you can just leave it out, and if it has a coefficient of 1 or -1, you can leave out the "1" part)
 - Note: When using small constants and values, you may not see it at first; that is because the window of the graph           is -1000 to 1000 on both the x and y axis.
-- Another Note: When doing quadratic equations, the graph may seem very blurry. That is because the dots representing the points are spaced out fairly far apart, but you will see the points if you zoom in.
-- With that graph you may perform transformations by adding key codes after your equation.
+- With that graph you may perform transformations by adding key codes when prompted.
     - Adding tuN will translate the graph N units up. (negative Ns will go down)
     - Adding trN will translate the graph N units to the right. (negative Ns will go down)
     - Adding duN will vertically dilate the graph by a factor of N.
     - Adding drN will horizontally dilate the graph by a factor of N.
     - Adding rc will rotate the graph 90 degrees clockwise.
     - Adding rcc will rotate the graph 90 degrees counterclockwise.
-         - Note: You may use multiple transformations in a chain. (ex. "java GraphingCalculator 5x + 300 tr200 du2 rc")
+         - Note: You may use multiple transformations in a chain. (ex. "tr200 du2 rc")
+         - Another Note: When doing rotations, they will always be processed last, even if you put "rc" before "tr".        Otherwise, rotations are processed in the order you enter them.
 - When running the program, the terminal will print your a, b, and c values back to you. It will also print the root(s) of your equation.
 
-You also have the option of inputting two graphs by running "java GraphingCalculator ax^2 + bx + c new dx^2 + ex + f". Just separate the two graph equations using the word new.
-- With those two graphs, you can also use the transformations stated above, but you have to apply them to each graph individually. (ex. "java GraphingCalculator 5x + 300 tr200 du2 rc new x^2 + 200 tu-500")
+You also have the option of inputting two graph.
+- With the second graph, you can also use the transformations stated above.
 - When running the program, the terminal will print a, b, c, d, e, and f. In addition, it will print the root(s) of both equations and the intercept(s) of the two equations.
 
 To see your displayed graph:
@@ -114,3 +115,7 @@ Jeremy - When inputting a smaller window, I either keep getting coordinate out o
 January 20, 2019
 ------------------------------------------------------------------------------------------------------------------------------
 Jeremy - I began making the input more user-friendly.
+
+January 21, 2019
+------------------------------------------------------------------------------------------------------------------------------
+Jeremy - I scrapped the window input because it was causing too many errors. I changed the input so it was more user-friendly, and now it only returns information for one graph if you only inputted one graph. Also, I fixed a bug with transformations where it was making large sectors black.
