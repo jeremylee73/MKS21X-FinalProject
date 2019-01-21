@@ -106,12 +106,14 @@ public class SingleGraph {
 
   // Translates graph vertically by a units
   public void translateUpDown(int a) {
+    eraseVals(q1, x1, c1);
     c1 = (int) Math.round(c1 + a);
     storeVals(q1, x1, c1);
   }
 
   // Translates graph horizontally by a units
   public void translateLeftRight(int a) {
+    eraseVals(q1, x1, c1);
     c1 = (int) Math.round((q1*a*a)+(-x1*a)+c1);
     x1 = x1 + ((-2 * q1) * a);
     storeVals(q1, x1, c1);
@@ -119,6 +121,7 @@ public class SingleGraph {
 
   // Dilates graph vertically by a factor of a
   public void dilateUpDown(int a) {
+    eraseVals(q1, x1, c1);
     q1 = q1 * a;
     x1 = x1 * a;
     c1 = c1 * a;
@@ -127,6 +130,7 @@ public class SingleGraph {
 
   // Dilates graph horizontally by a factor of a
   public void dilateLeftRight(int a) {
+    eraseVals(q1, x1, c1);
     x1 = x1 / a;
     q1 = q1 / (a*a);
     storeVals(q1, x1, c1);
@@ -134,6 +138,7 @@ public class SingleGraph {
 
   // Rotates graph 90 degrees clockwise
   public void rotate90C(){
+    eraseVals(q1, x1, c1);
     numRotates -= 1;
     for (int i=0; i<height; i++){
       for (int j=0; j<width; j++){
@@ -153,6 +158,7 @@ public class SingleGraph {
 
   // Rotates graph 90 degrees counterclockwise
   public void rotate90CC(){
+    eraseVals(q1, x1, c1);
     numRotates += 1;
     for (int i=0; i<height; i++){
       for (int j=0; j<width; j++){
@@ -166,6 +172,15 @@ public class SingleGraph {
         if (reformedJ >= -1000 && reformedJ <= 1000){
           graph[reformedJ+1000][i] = true;
         }
+      }
+    }
+  }
+
+  public void eraseVals(double q, double x, int c){
+    for (int i=-1000; i<(height/2); i++){
+      int yval = (int) Math.round((q*i*i) + (x*i) + c);
+      if (yval < (height/2) && yval >= (-1 * height / 2)){
+        graph[yval+1000][i+1000] = false;
       }
     }
   }
