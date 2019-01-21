@@ -1,6 +1,7 @@
 import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.imageio.ImageIO;
+import java.util.Scanner;
 
 public class GraphingCalculator {
 
@@ -50,6 +51,26 @@ public class GraphingCalculator {
     int c2 = 0;
     int h = 2001; // height of image & graph
     int w = 2001; // width of image & graph
+
+    Scanner reader = new Scanner(System.in);  // Reading from System.in
+    System.out.println("Enter mode: ");
+    System.out.println("1. One Graph");
+    System.out.println("2. Two Graphs");
+    String mode = reader.nextLine(); // Scans the next token of the input as an int.
+
+    System.out.println("Enter your first expression: ");
+    String equation1 = reader.nextLine();
+    System.out.println("Transformations?");
+    String transformations1 = reader.nextLine();
+
+    if (mode.equals("2")){
+      System.out.println("Enter your second expression: ");
+      String equation2 = reader.nextLine();
+      System.out.println("Transformations?");
+      String transformations2 = reader.nextLine();
+    }
+    
+    reader.close();
 
     int i = 0;
     if (args.length > 0){
