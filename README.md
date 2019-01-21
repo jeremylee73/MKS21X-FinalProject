@@ -102,3 +102,15 @@ Jeremy - I finally got the display to work for both linear and quadratic functio
 January 17, 2019
 ------------------------------------------------------------------------------------------------------------------------------
 Jeremy - I worked on getting an input for the graph's window, but there are still some bugs to fix.
+
+January 18, 2019
+------------------------------------------------------------------------------------------------------------------------------
+Jeremy - When trying to change the window, I keep getting an error with dilate and I haven't been able to fix it.
+
+January 19, 2019
+------------------------------------------------------------------------------------------------------------------------------
+Jeremy - When inputting a smaller window, I either keep getting coordinate out of bounds errors or the dilate is causing the graph to create strange bars.
+
+January 20, 2019
+------------------------------------------------------------------------------------------------------------------------------
+Jeremy - I began making the input more user-friendly.
