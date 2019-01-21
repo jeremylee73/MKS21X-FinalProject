@@ -138,10 +138,10 @@ public class GraphingCalculator {
           }
           if (a == 'd') { // Dilations
             if (b == 'u') { // dilate up
-              output2.dilateUpDown(Integer.parseInt(transform2[i].substring(2,transform2[i].length())));
+              output2.dilateUpDown(Double.parseDouble(transform2[i].substring(2,transform2[i].length())));
             }
             if (b == 'r') { // dilate right
-              output2.dilateLeftRight(Integer.parseInt(transform2[i].substring(2,transform2[i].length())));
+              output2.dilateLeftRight(Double.parseDouble(transform2[i].substring(2,transform2[i].length())));
             }
           }
         }
