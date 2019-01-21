@@ -19,6 +19,7 @@ To run the program, first compile GraphingCalculator.java. Then, you have a coup
     - Adding rc will rotate the graph 90 degrees clockwise.
     - Adding rcc will rotate the graph 90 degrees counterclockwise.
          - Note: You may use multiple transformations in a chain. (ex. "tr200 du2 rc")
+         - Another Note: When doing rotations, they will always be processed last, even if you put "rc" before "tr".        Otherwise, rotations are processed in the order you enter them.
 - When running the program, the terminal will print your a, b, and c values back to you. It will also print the root(s) of your equation.
 
 You also have the option of inputting two graph.
