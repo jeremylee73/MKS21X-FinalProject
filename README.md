@@ -26,6 +26,7 @@ To run the program, first compile GraphingCalculator.java. Then, you have a coup
 You also have the option of inputting two graph.
 - With the second graph, you can also use the transformations stated above.
 - When running the program, the terminal will print a, b, c, d, e, and f. In addition, it will print the root(s) of both equations and the intercept(s) of the two equations.
+    - Note: The intercepts and roots do not account for rotations.
 
 To see your displayed graph:
 - Open "graph.jpg" within the repo folder. It should update after you run "java GraphingCalculator ..."
