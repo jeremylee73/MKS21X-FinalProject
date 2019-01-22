@@ -12,6 +12,7 @@ To run the program, first compile GraphingCalculator.java. Then, you have a coup
 - You can input one graph by inputting "java GraphingCalculator ax^2 + bx + c" (Make sure to have spaces between terms and signs. If the term has a coefficient of 0, you can just leave it out, and if it has a coefficient of 1 or -1, you can leave out the "1" part)
 - Note: When using small constants and values, you may not see it at first; that is because the window of the graph           is -1000 to 1000 on both the x and y axis.
 - With that graph you may perform transformations by adding key codes when prompted.
+    - For no transformations, type "None"
     - Adding tuN will translate the graph N units up. (negative Ns will go down)
     - Adding trN will translate the graph N units to the right. (negative Ns will go down)
     - Adding duN will vertically dilate the graph by a factor of N.
