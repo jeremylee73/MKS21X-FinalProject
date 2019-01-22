@@ -107,7 +107,7 @@ public class SingleGraph {
   // Translates graph vertically by a units
   public void translateUpDown(int a) {
     eraseVals(q1, x1, c1);
-    c1 = (int) Math.round(c1 + a);
+    c1 = Math.round(c1 + a);
     storeVals(q1, x1, c1);
   }
 
