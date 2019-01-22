@@ -64,139 +64,6 @@ public class GraphingCalculator {
 
     System.out.println("Enter your first expression: ");
     String equation1 = reader.nextLine();
-    System.out.println("Transformations?");
-    String transformations1 = reader.nextLine();
-
-    if (mode.equals("2")){
-      System.out.println("Enter your second expression: ");
-      String equation2 = reader.nextLine();
-      String[] terms2 = new String[equation2.length()];
-      terms2 = equation2.split(" ");
-      System.out.println("Transformations?");
-      String transformations2 = reader.nextLine();
-
-      // Finding coefficients of terms of second equation
-      int sign2 = 1;
-      for (int i = 0;i < terms2.length;i += 1) {
-        boolean presentX2 = false;
-        boolean deg12 = false;
-        boolean deg22 = false;
-        char firstChar2 = terms2[i].charAt(0);
-        if (firstChar2 != 't' && firstChar2 != 'd' && firstChar2 != 'r'){ // checks that the term is not a transformation
-          // Checking for sign
-          if (terms2[i].equals("+")){
-            sign2 = 1;
-          } else if (terms2[i].equals("-")){
-            sign2 = -1;
-          } else {
-            for (int j=0; j<terms2[i].length(); j++){
-              if (terms2[i].charAt(j) == 'x'){
-                presentX2 = true; // term could be x or x^2
-                if (j == terms2[i].length()-1){
-                  deg12 = true; // term is x
-                } else if ((j<terms2[i].length()-2) && (terms2[i].substring(j, j+3).equals("x^2"))){
-                  deg22 = true; // term is x^2
-                }
-              }
-            }
-
-            if (!presentX2){ // has to be a constant
-              try{
-                c2 = sign2 * Integer.parseInt(terms2[i]);
-              }
-              catch (NumberFormatException e){
-                System.out.println("Bad constant");
-                System.exit(0);
-              }
-            } else if (deg12){
-                if (terms2[i].length() != 1 && !(terms2[i].equals("-x"))){
-                  try {
-                    x2 = sign2 * Double.parseDouble(terms2[i].substring(0, terms2[i].length()-1)); // not x or -x
-                  }
-                  catch (NumberFormatException e) {
-                    System.out.println("Coefficients must be numerical.");
-                    System.exit(0);
-                  }
-                } else if (terms2[i].length() == 1){ // has to be 1x
-                    x2 = 1;
-                } else { // has to be -1x
-                  x2 = -1;
-                }
-          } else if (deg22){
-              if (terms2[i].length() != 3 && !(terms2[i].equals("-x^2"))){
-                try {
-                  q2 = sign2 * Double.parseDouble(terms2[i].substring(0, terms2[i].length()-3)); // not x^2 or -x^2
-                }
-                catch (NumberFormatException e) {
-                  System.out.println("Coefficients must be numerical.");
-                  System.exit(0);
-                }
-              } else if (terms2[i].length() == 3){ // has to be 1x^2
-                q2 = 1;
-              } else { // has to be -1x^2
-                q2 = -1;
-              }
-            }
-          }
-        }
-      }
-
-      SingleGraph output2 = new SingleGraph(2001,2001,q2,x2,c2);
-      // Looking for transformations in input1
-      String[] transform2 = new String[transformations2.length()];
-      transform2 = transformations2.split(" ");
-
-      for (int i=0; i<transform2.length; i++){
-        if (transform2[i].length() >= 2){
-          char a = transform2[i].charAt(0);
-          char b = transform2[i].charAt(1);
-          while ((a != 't' && a != 'd' && a != 'r') || (b != 'u' && b != 'r' && b != 'c')) {
-              System.out.println("Invalid transformation input. Enter again:");
-              transformations2 = reader.nextLine();
-              transform2 = new String[transformations2.length()];
-              transform2 = transformations2.split(" ");
-              a = transform2[i].charAt(0);
-              b = transform2[i].charAt(1);
-          }
-          if (a == 't') { // Translations
-            if (b == 'u') { // translate up
-              output2.translateUpDown(Integer.parseInt(transform2[i].substring(2,transform2[i].length())));
-            }
-            if (b == 'r') { // translate right
-              output2.translateLeftRight(Integer.parseInt(transform2[i].substring(2,transform2[i].length())));
-            }
-          }
-          if (a == 'd') { // Dilations
-            if (b == 'u') { // dilate up
-              output2.dilateUpDown(Double.parseDouble(transform2[i].substring(2,transform2[i].length())));
-            }
-            if (b == 'r') { // dilate right
-              output2.dilateLeftRight(Double.parseDouble(transform2[i].substring(2,transform2[i].length())));
-            }
-          }
-        }
-      }
-      for (int i=0; i<transform2.length; i++){
-        if (transform2[i].length() >= 2){
-          char a = transform2[i].charAt(0);
-          char b = transform2[i].charAt(1);
-          if (a == 'r'){ // Rotations
-            if (transform2[i].length() >= 3){
-              if (transform2[i].substring(1,3).equals("cc")){
-                output2.rotate90CC();
-              }
-            } else if (b == 'c'){
-              output2.rotate90C();
-            }
-          }
-        }
-      }
-
-      clear();
-      output2.display();
-    }
-
-
 
     String[] terms1 = new String[equation1.length()];
     terms1 = equation1.split(" ");
@@ -270,6 +137,9 @@ public class GraphingCalculator {
       }
     }
 
+    System.out.println("Transformations?");
+    String transformations1 = reader.nextLine();
+
     SingleGraph output = new SingleGraph(2001,2001,q,x,c);
 
     // Looking for transformations in input1
@@ -321,6 +191,139 @@ public class GraphingCalculator {
         }
       }
     }
+
+    if (mode.equals("2")){
+      System.out.println("Enter your second expression: ");
+      String equation2 = reader.nextLine();
+      String[] terms2 = new String[equation2.length()];
+      terms2 = equation2.split(" ");
+      System.out.println("Transformations?");
+      String transformations2 = reader.nextLine();
+
+      // Finding coefficients of terms of second equation
+      int sign2 = 1;
+      for (i = 0;i < terms2.length;i += 1) {
+        boolean presentX2 = false;
+        boolean deg12 = false;
+        boolean deg22 = false;
+        char firstChar2 = terms2[i].charAt(0);
+        if (firstChar2 != 't' && firstChar2 != 'd' && firstChar2 != 'r'){ // checks that the term is not a transformation
+          // Checking for sign
+          if (terms2[i].equals("+")){
+            sign2 = 1;
+          } else if (terms2[i].equals("-")){
+            sign2 = -1;
+          } else {
+            for (int j=0; j<terms2[i].length(); j++){
+              if (terms2[i].charAt(j) == 'x'){
+                presentX2 = true; // term could be x or x^2
+                if (j == terms2[i].length()-1){
+                  deg12 = true; // term is x
+                } else if ((j<terms2[i].length()-2) && (terms2[i].substring(j, j+3).equals("x^2"))){
+                  deg22 = true; // term is x^2
+                }
+              }
+            }
+
+            if (!presentX2){ // has to be a constant
+              try{
+                c2 = sign2 * Integer.parseInt(terms2[i]);
+              }
+              catch (NumberFormatException e){
+                System.out.println("Bad constant");
+                System.exit(0);
+              }
+            } else if (deg12){
+                if (terms2[i].length() != 1 && !(terms2[i].equals("-x"))){
+                  try {
+                    x2 = sign2 * Double.parseDouble(terms2[i].substring(0, terms2[i].length()-1)); // not x or -x
+                  }
+                  catch (NumberFormatException e) {
+                    System.out.println("Coefficients must be numerical.");
+                    System.exit(0);
+                  }
+                } else if (terms2[i].length() == 1){ // has to be 1x
+                    x2 = 1;
+                } else { // has to be -1x
+                  x2 = -1;
+                }
+          } else if (deg22){
+              if (terms2[i].length() != 3 && !(terms2[i].equals("-x^2"))){
+                try {
+                  q2 = sign2 * Double.parseDouble(terms2[i].substring(0, terms2[i].length()-3)); // not x^2 or -x^2
+                }
+                catch (NumberFormatException e) {
+                  System.out.println("Coefficients must be numerical.");
+                  System.exit(0);
+                }
+              } else if (terms2[i].length() == 3){ // has to be 1x^2
+                q2 = 1;
+              } else { // has to be -1x^2
+                q2 = -1;
+              }
+            }
+          }
+        }
+      }
+
+      SingleGraph output2 = new SingleGraph(2001,2001,q2,x2,c2);
+      // Looking for transformations in input1
+      String[] transform2 = new String[transformations2.length()];
+      transform2 = transformations2.split(" ");
+
+      for (i=0; i<transform2.length; i++){
+        if (transform2[i].length() >= 2){
+          char a = transform2[i].charAt(0);
+          char b = transform2[i].charAt(1);
+          while ((a != 't' && a != 'd' && a != 'r') || (b != 'u' && b != 'r' && b != 'c')) {
+              System.out.println("Invalid transformation input. Enter again:");
+              transformations2 = reader.nextLine();
+              transform2 = new String[transformations2.length()];
+              transform2 = transformations2.split(" ");
+              a = transform2[i].charAt(0);
+              b = transform2[i].charAt(1);
+          }
+          if (a == 't') { // Translations
+            if (b == 'u') { // translate up
+              output2.translateUpDown(Integer.parseInt(transform2[i].substring(2,transform2[i].length())));
+            }
+            if (b == 'r') { // translate right
+              output2.translateLeftRight(Integer.parseInt(transform2[i].substring(2,transform2[i].length())));
+            }
+          }
+          if (a == 'd') { // Dilations
+            if (b == 'u') { // dilate up
+              output2.dilateUpDown(Double.parseDouble(transform2[i].substring(2,transform2[i].length())));
+            }
+            if (b == 'r') { // dilate right
+              output2.dilateLeftRight(Double.parseDouble(transform2[i].substring(2,transform2[i].length())));
+            }
+          }
+        }
+      }
+      for (i=0; i<transform2.length; i++){
+        if (transform2[i].length() >= 2){
+          char a = transform2[i].charAt(0);
+          char b = transform2[i].charAt(1);
+          if (a == 'r'){ // Rotations
+            if (transform2[i].length() >= 3){
+              if (transform2[i].substring(1,3).equals("cc")){
+                output2.rotate90CC();
+              }
+            } else if (b == 'c'){
+              output2.rotate90C();
+            }
+          }
+        }
+      }
+
+      clear();
+      output2.display();
+    }
+
+
+
+
 
     reader.close();
 
