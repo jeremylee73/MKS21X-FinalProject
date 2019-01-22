@@ -120,4 +120,4 @@ Jeremy - I began making the input more user-friendly.
 
 January 21, 2019
 ------------------------------------------------------------------------------------------------------------------------------
-Jeremy - I scrapped the window input because it was causing too many errors. I changed the input so it was more user-friendly, and now it only returns information for one graph if you only inputted one graph. Also, I fixed a bug with transformations where it was making large sectors black.
+Jeremy - I scrapped the window input because it was causing too many errors. I changed the input so it was more user-friendly, and now it only returns information for one graph if you only inputted one graph. Also, I fixed a bug with transformations where it was making large sectors black. I also added some exception catches for bad inputs for mode and expressions.
