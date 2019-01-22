@@ -150,6 +150,14 @@ public class GraphingCalculator {
         if (transform2[i].length() >= 2){
           char a = transform2[i].charAt(0);
           char b = transform2[i].charAt(1);
+          while ((a != 't' && a != 'd' && a != 'r') || (b != 'u' && b != 'r' && b != 'c')) {
+              System.out.println("Invalid transformation input. Enter again:");
+              transformations2 = reader.nextLine();
+              transform2 = new String[transformations2.length()];
+              transform2 = transformations2.split(" ");
+              a = transform2[i].charAt(0);
+              b = transform2[i].charAt(1);
+          }
           if (a == 't') { // Translations
             if (b == 'u') { // translate up
               output2.translateUpDown(Integer.parseInt(transform2[i].substring(2,transform2[i].length())));
@@ -188,7 +196,7 @@ public class GraphingCalculator {
       output2.display();
     }
 
-    reader.close();
+
 
     String[] terms1 = new String[equation1.length()];
     terms1 = equation1.split(" ");
@@ -272,6 +280,14 @@ public class GraphingCalculator {
       if (transform1[i].length() >= 2){
         char a = transform1[i].charAt(0);
         char b = transform1[i].charAt(1);
+        while ((a != 't' && a != 'd' && a != 'r') || (b != 'u' && b != 'r' && b != 'c')) {
+            System.out.println("Invalid transformation input. Enter again:");
+            transformations1 = reader.nextLine();
+            transform1 = new String[transformations1.length()];
+            transform1 = transformations1.split(" ");
+            a = transform1[i].charAt(0);
+            b = transform1[i].charAt(1);
+        }
         if (a == 't') { // Translations
           if (b == 'u') { // translate up
             output.translateUpDown(Integer.parseInt(transform1[i].substring(2,transform1[i].length())));
@@ -305,6 +321,8 @@ public class GraphingCalculator {
         }
       }
     }
+
+    reader.close();
 
     System.out.println("a: " + q);
     System.out.println("b: " + x);
