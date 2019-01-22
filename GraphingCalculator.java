@@ -57,6 +57,10 @@ public class GraphingCalculator {
     System.out.println("1. One Graph");
     System.out.println("2. Two Graphs");
     String mode = reader.nextLine(); // Scans the next token of the input as an int.
+    while (!mode.equals("1") && !mode.equals("2")){
+      System.out.println("Please enter 1 or 2.");
+      mode = reader.nextLine();
+    }
 
     System.out.println("Enter your first expression: ");
     String equation1 = reader.nextLine();
