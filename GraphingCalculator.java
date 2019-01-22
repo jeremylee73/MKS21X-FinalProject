@@ -150,7 +150,7 @@ public class GraphingCalculator {
       if (transform1[i].length() >= 2){
         char a = transform1[i].charAt(0);
         char b = transform1[i].charAt(1);
-        while ((a != 't' && a != 'd' && a != 'r') || (b != 'u' && b != 'r' && b != 'c')) {
+        while (((a != 't' && a != 'd' && a != 'r') || (b != 'u' && b != 'r' && b != 'c')) && (!(transform1[i].equals("None")))) {
             System.out.println("Invalid transformation input. Enter again:");
             transformations1 = reader.nextLine();
             transform1 = new String[transformations1.length()];
@@ -275,7 +275,7 @@ public class GraphingCalculator {
         if (transform2[i].length() >= 2){
           char a = transform2[i].charAt(0);
           char b = transform2[i].charAt(1);
-          while ((a != 't' && a != 'd' && a != 'r') || (b != 'u' && b != 'r' && b != 'c')) {
+          while (((a != 't' && a != 'd' && a != 'r') || (b != 'u' && b != 'r' && b != 'c')) && (!(transform2.equals("None")))) {
               System.out.println("Invalid transformation input. Enter again:");
               transformations2 = reader.nextLine();
               transform2 = new String[transformations2.length()];
