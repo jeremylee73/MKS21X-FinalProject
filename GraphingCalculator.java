@@ -101,18 +101,36 @@ public class GraphingCalculator {
             }
 
             if (!presentX2){ // has to be a constant
-              c2 = sign2 * Integer.parseInt(terms2[i]);
-            } else if (deg12){
-              if (terms2[i].length() != 1 && !(terms2[i].equals("-x"))){
-                x2 = sign2 * Double.parseDouble(terms2[i].substring(0, terms2[i].length()-1)); // not x or -x
-              } else if (terms2[i].length() == 1){ // has to be 1x
-                x2 = 1;
-              } else { // has to be -1x
-                x2 = -1;
+              try{
+                c2 = sign2 * Integer.parseInt(terms2[i]);
               }
-            } else if (deg22){
+              catch (NumberFormatException e){
+                System.out.println("Bad constant");
+                System.exit(0);
+              }
+            } else if (deg12){
+                if (terms2[i].length() != 1 && !(terms2[i].equals("-x"))){
+                  try {
+                    x2 = sign2 * Double.parseDouble(terms2[i].substring(0, terms2[i].length()-1)); // not x or -x
+                  }
+                  catch (NumberFormatException e) {
+                    System.out.println("Coefficients must be numerical.");
+                    System.exit(0);
+                  }
+                } else if (terms2[i].length() == 1){ // has to be 1x
+                    x2 = 1;
+                } else { // has to be -1x
+                  x2 = -1;
+                }
+          } else if (deg22){
               if (terms2[i].length() != 3 && !(terms2[i].equals("-x^2"))){
-                q2 = sign2 * Double.parseDouble(terms2[i].substring(0, terms2[i].length()-3)); // not x^2 or -x^2
+                try {
+                  q2 = sign2 * Double.parseDouble(terms2[i].substring(0, terms2[i].length()-3)); // not x^2 or -x^2
+                }
+                catch (NumberFormatException e) {
+                  System.out.println("Coefficients must be numerical.");
+                  System.exit(0);
+                }
               } else if (terms2[i].length() == 3){ // has to be 1x^2
                 q2 = 1;
               } else { // has to be -1x^2
@@ -203,18 +221,36 @@ public class GraphingCalculator {
             }
 
             if (!presentX){ // has to be a constant
-              c = sign * Integer.parseInt(terms1[i]);
-            } else if (deg1){
-              if (terms1[i].length() != 1 && !(terms1[i].equals("-x"))){
-                x = sign * Double.parseDouble(terms1[i].substring(0, terms1[i].length()-1)); // not x or -x
-              } else if (terms1[i].length() == 1){ // has to be 1x
-                x = 1;
-              } else { // has to be -1x
-                x = -1;
+              try {
+                c = sign * Integer.parseInt(terms1[i]);
               }
-            } else if (deg2){
+              catch (NumberFormatException e){
+                System.out.println("Bad constant");
+                System.exit(0);
+              }
+            } else if (deg1){
+                if (terms1[i].length() != 1 && !(terms1[i].equals("-x"))){
+                  try {
+                    x = sign * Double.parseDouble(terms1[i].substring(0, terms1[i].length()-1)); // not x or -x
+                  }
+                  catch (NumberFormatException e) {
+                    System.out.println("Coefficients must be numerical.");
+                    System.exit(0);
+                  }
+                } else if (terms1[i].length() == 1){ // has to be 1x
+                    x = 1;
+                } else { // has to be -1x
+                  x = -1;
+                }
+          } else if (deg2){
               if (terms1[i].length() != 3 && !(terms1[i].equals("-x^2"))){
-                q = sign * Double.parseDouble(terms1[i].substring(0, terms1[i].length()-3)); // not x^2 or -x^2
+                try {
+                  q = sign * Double.parseDouble(terms1[i].substring(0, terms1[i].length()-3)); // not x^2 or -x^2
+                }
+                catch (NumberFormatException e) {
+                  System.out.println("Coefficients must be numerical.");
+                  System.exit(0);
+                }
               } else if (terms1[i].length() == 3){ // has to be 1x^2
                 q = 1;
               } else { // has to be -1x^2
